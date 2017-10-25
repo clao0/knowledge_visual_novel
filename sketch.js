@@ -212,14 +212,14 @@ function draw() {
       image(corridor, windowWidth*2/3, 0, windowWidth/3, windowHeight);
 
      if (mouseX < windowWidth/3 && mouseY < windowHeight-txtScreenH) {
-       image(stairs, 0, 0, windowWidth/3+frameCount%windowWidth*2/3, windowHeight);
-       if (frameCount > windowWidth*2/3) {
+       image(stairs, 0, 0, windowWidth/3+frameCount*3%windowWidth*2/3, windowHeight);
+       if (frameCount*3 > windowWidth*2/3) {
          scene = 2;
        }
      } else if (mouseX > windowWidth*2/3 && mouseY < windowHeight-txtScreenH){
-       image(corridor, windowWidth*2/3 - frameCount%600, 0, windowWidth*2/3+frameCount%windowWidth*2/3, windowHeight);
+       image(corridor, windowWidth*2/3 - frameCount*3%600, 0, windowWidth*2/3+frameCount*3%windowWidth*2/3, windowHeight);
        goDownstairs = true;
-       if (frameCount > windowWidth*2/3) {
+       if (frameCount*3 > windowWidth*2/3) {
          scene = "2b";
        }
      }
@@ -304,7 +304,8 @@ function draw() {
       text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-80, 100);
     } else if (scene == "phone") {
       background(phone);
-      speechBubble(10, 10, 1, "hi everyone");
+      speechBubble(50, 30, 1, "3 texts from Honeybunny xoxox");
+      speechBubble(50, 300, 1, "1 missed call from Dr. Nerva Sorek")
 
     }
      else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
@@ -366,13 +367,14 @@ function keyTyped() {
   }
 }
 
-function speechBubble(x, y, scale, text) {
+function speechBubble(x, y, scale, something) {
   noStroke();
   fill("#ffffff")
   translate(x, y);
   rect(0, 0, 300*scale, 100*scale);
   triangle(250*scale, 100*scale, 300*scale, 100*scale, 300*scale, 150*scale);
   fill(0,0,0);
-  text(text, 10*scale, 10*scale, 290*scale, 90*scale);
+  text(something, 20*scale, 30*scale, 290*scale, 90*scale);
   translate(-x, -y);
+
 }
