@@ -39,6 +39,7 @@ var weird;
 var phone;
 var phoneBackground;
 var phoneScreen;
+var phoneCall;
 
 // images for clicking
 var drawers;
@@ -183,6 +184,8 @@ function draw() {
       background(reporter);
     } else if (scene == 3) {
       background(weird);
+    } else if (scene == "voicemail") {
+      background(phoneCall);
     }
 
     fill(0,0,0);
@@ -343,7 +346,9 @@ function draw() {
   && mouseY >= windowHeight/4+120 && mouseY <= (windowHeight/4+120)+windowHeight/10*0.8) {
     scene = "voicemail";
   }
-    }
+} else if (scene == "voicemail" && (scriptCount-28) <= voicemail.length) {
+  text(voicemail[scriptCount-28], textLoc[0], textLoc[1], windowWidth-80, 100);
+}
      else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
