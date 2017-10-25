@@ -122,7 +122,7 @@ function setup() {
     stairs = loadImage("assets/stairs.jpg");
     report = loadImage("assets/labreport.jpg");
     reporter = loadImage("assets/reporter.jpg")
-    phone = loadImage("assets/phone.jpg");
+    phone = loadImage("assets/phone.png");
     weird = loadImage("assets/trippy.jpg");
 
     drawers = loadImage("assets/drawers.jpg");
@@ -303,9 +303,9 @@ function draw() {
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
       text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-80, 100);
     } else if (scene == "phone") {
-      background(phone);
-      speechBubble(50, 30, 1, "3 texts from Honeybunny xoxox");
-      speechBubble(50, 300, 1, "1 missed call from Dr. Nerva Sorek")
+      background(0,0,0);
+      image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
+      speechBubble(windowWidth*3/8+40, windowHeight/20+120, "3 texts from Honeybunny xoxox");
 
     }
      else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
@@ -367,14 +367,16 @@ function keyTyped() {
   }
 }
 
-function speechBubble(x, y, scale, something) {
+function speechBubble(x, y, something) {
   noStroke();
   fill("#ffffff")
   translate(x, y);
-  rect(0, 0, 300*scale, 100*scale);
-  triangle(250*scale, 100*scale, 300*scale, 100*scale, 300*scale, 150*scale);
+  rect(0, 0, windowWidth/4*0.8, windowHeight/10*0.8);
+  triangle(windowWidth/4*0.8-(windowWidth/4*0.8)/10, windowHeight/10*0.8,
+   windowWidth/4*0.8, windowHeight/10*0.8,
+       windowWidth/4*0.8, windowHeight/10*0.8+(windowHeight/10*0.8)/3);
   fill(0,0,0);
-  text(something, 20*scale, 30*scale, 290*scale, 90*scale);
+  text(something, 20, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
   translate(-x, -y);
 
 }
