@@ -1,4 +1,4 @@
-// boolean to store whether to move to next or not
+/ boolean to store whether to move to next or not
 var moveToNext;
 
 // boolean to store whether or not to move backwards
