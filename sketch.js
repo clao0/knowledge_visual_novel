@@ -78,6 +78,8 @@ var drawersSelected;
 // script for different types of media
 var labReport;
 var news;
+var messages;
+var voicemail;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -114,6 +116,18 @@ function setup() {
 "'When young people are powerful, the Party and People’s army are powerful. Soon there will be nothing for us to afraid of - not even examinitis.'",
 "At 5am today, floating “fluff” microbots were released into air, granting all civilians who inhale them, immunity.",
 "Civilians are advised to keep their windows open at all time, and take walks, maximising chances of exposure."];
+    messages = ["Hey babe ;) So excited for our dinner tonight",
+  "Cant believe its already been 5 years",
+"So proud of u even the Prez approves of ur work!!",
+"Just be sure to open ur windows ok dont want you coming down with examinitis haha"];
+   voicemail = ["Dr. Scrood, I hope you’re feeling alright.",
+"I’m not sure if you’ll remember this but you were assaulted by one of the test subjects. We managed to restrain her before any significant damage was done, but you must be feeling a bit under the weather.",
+"Nevertheless, now is no time to wait. President Tater has gone insane!",
+"The military forcibly seized the “fluff” microbots this morning and implemented stage 2 testing.",
+"You need to escape. Now.",
+"There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.",
+"We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 100m radius.",
+"Bring a weapon. The Echo360 is at tunnel’s entrance."];
     scriptCount = 0;
     txtScreenH = 200;
     txtMargin = 20;
@@ -184,7 +198,6 @@ function draw() {
     fill("#ffffff");
     strokeWeight(5);
     rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
-    // image(border, 0, windowHeight-txtScreenH, border.width/1.58, border.height/4.8);
 
     if (a && scene == 1) {
       scene = "1a";
@@ -319,6 +332,17 @@ function draw() {
       notification(windowWidth*3/8+40, windowHeight*3/20+120, "3 texts from Honeybunny xoxox");
       notification(windowWidth*3/8+40, windowHeight/4+120, "1 missed call from Dr. Nerva Sorek");
 
+      text(mouseX, 30, 30);
+      text(mouseY, 30, 60);
+      text(scene, 30, 90);
+
+      if (mouseX >= windowWidth*3/8+40 && mouseX <= ((windowWidth*3/8+40)+windowWidth/4*0.8)
+    && mouseY >= windowHeight*3/20+120 && mouseY <= (windowHeight*3/20+120)+windowHeight/10*0.8) {
+      scene = "messages";
+    } else if (mouseX >= windowWidth*3/8+40 && mouseX <= (windowWidth*3/8+40)+windowWidth/4*0.8
+  && mouseY >= windowHeight/4+120 && mouseY <= (windowHeight/4+120)+windowHeight/10*0.8) {
+    scene = "voicemail";
+  }
     }
      else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
