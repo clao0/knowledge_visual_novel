@@ -37,6 +37,8 @@ var reporter;
 var report;
 var weird;
 var phone;
+var phoneBackground;
+var phoneScreen;
 
 // images for clicking
 var drawers;
@@ -60,7 +62,7 @@ var txtMargin;
 var poiret;
 
 // font size
-var textSize;
+var textSize1;
 
 // booleans to control navigation
 var goUpstairs;
@@ -116,7 +118,7 @@ function setup() {
     txtScreenH = 200;
     txtMargin = 20;
     border = loadImage("assets/border.png");
-    bedroom = loadImage("assets/bedroom.jpg");
+    bedroom = loadImage("assets/bed3.jpg");
     corridor = loadImage("assets/corridor.jpg");
     office = loadImage("assets/office.jpg");
     stairs = loadImage("assets/stairs.jpg");
@@ -124,6 +126,8 @@ function setup() {
     reporter = loadImage("assets/reporter.jpg")
     phone = loadImage("assets/phone.png");
     weird = loadImage("assets/trippy.jpg");
+    phoneBackground = loadImage("assets/phonebkg.jpg");
+
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -145,7 +149,7 @@ function setup() {
     stairsStatus = "alive";
 
     poiret = loadFont("assets/PoiretOne-Regular.ttf");
-    textSize = 20;
+    textSize1 = 20;
 }
 
 function draw() {
@@ -168,14 +172,14 @@ function draw() {
     }
 
     fill(0,0,0);
-    text(moveToNext, 10, textSize);
-    text(moveBackwards, 10, textSize*2);
-    text(scriptCount, 10, textSize*3);
-    text(a, 10, textSize*4);
-    text(b, 10, textSize*5);
-    text(scene, 10, textSize*6);
-    text(mouseX, 10, textSize*7);
-    text(mouseY, 10, textSize*8);
+    text(moveToNext, 10, textSize1);
+    text(moveBackwards, 10, textSize1*2);
+    text(scriptCount, 10, textSize1*3);
+    text(a, 10, textSize1*4);
+    text(b, 10, textSize1*5);
+    text(scene, 10, textSize1*6);
+    text(mouseX, 10, textSize1*7);
+    text(mouseY, 10, textSize1*8);
 
     fill("#ffffff");
     strokeWeight(5);
@@ -200,12 +204,12 @@ function draw() {
     }
 
     fill(0,0,0);
-    textFont(poiret, textSize);
+    textFont(poiret, textSize1);
 
     if (scriptCount == scene1.length) {
       // go to sleep option
       text(option1[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-      text(option1[1], textLoc[0], textLoc[1]+textSize*2, windowWidth-80, 100);
+      text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
     } else if (scriptCount == scene1.length+scene1a.length+1 && scene == "1a") {
       // go upstairs and downstairs option
       image(stairs, 0, 0, windowWidth/3, windowHeight);
@@ -250,9 +254,9 @@ function draw() {
       text(scene1[scriptCount], textLoc[0], textLoc[1], windowWidth-80, 100);
     } else if (scene == "1a" && scriptCount-4 < scene1a.length) {
       if (scriptCount == scene1.length+scene1a.length) {
-        textFont(poiret, textSize*2.2);
+        textFont(poiret, textSize1*2.2);
         text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-80, 100);
-        textFont(poiret, textSize);
+        textFont(poiret, textSize1);
       } else {
       text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-80, 100);
        }
@@ -272,12 +276,12 @@ function draw() {
         }
       } else {
         background(office);
-        text(moveToNext, 10, textSize);
-        text(moveBackwards, 10, textSize*2);
-        text(scriptCount, 10, textSize*3);
-        text(a, 10, textSize*4);
-        text(b, 10, textSize*5);
-        text(scene, 10, textSize*6);
+        text(moveToNext, 10, textSize1);
+        text(moveBackwards, 10, textSize1*2);
+        text(scriptCount, 10, textSize1*3);
+        text(a, 10, textSize1*4);
+        text(b, 10, textSize1*5);
+        text(scene, 10, textSize1*6);
         fill("#ffffff");
         strokeWeight(5);
         rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
@@ -296,27 +300,35 @@ function draw() {
     } else if (scene == 3 && scriptCount - 24 < scene3.length) {
       if (scriptCount == 28) {
         text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth-80, 100);
-        text(option4[0], textLoc[0], textLoc[1]+textSize, windowWidth-80, 100);
-        text(option4[1], textLoc[0], textLoc[1]+textSize*2, windowWidth-80, 100);
+        text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+        text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
       }
       text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-80, 100);
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
       text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-80, 100);
     } else if (scene == "phone") {
-      background(0,0,0);
+      background("#ffd1e5");
       image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
-      speechBubble(windowWidth*3/8+40, windowHeight/20+120, "3 texts from Honeybunny xoxox");
+      fill("#d2f5f7");
+      image(phoneBackground, windowWidth*3/8+30, windowHeight/20+100, windowWidth/4-55, windowHeight*9/10-200);
+      fill("#ffffff");
+      textSize(40);
+      text("17:20", windowWidth*3/8+windowWidth/8-55, windowHeight/10+110);
+      textSize(20);
+      text("Dr. I.M. Scrood's phone", windowWidth*3/8+80, windowHeight/10+140)
+      notification(windowWidth*3/8+40, windowHeight*3/20+120, "3 texts from Honeybunny xoxox");
+      notification(windowWidth*3/8+40, windowHeight/4+120, "1 missed call from Dr. Nerva Sorek");
 
     }
      else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
       text("YOU DEAD", windowWidth/2-100, windowHeight/2);
-      text("Press 'r' to reset game.", windowWidth/2-100, windowHeight/2+textSize);
+      text("Press 'r' to reset game.", windowWidth/2-100, windowHeight/2+textSize1);
     } else {
       background("#ffffff");
       text("ERROR", windowWidth/2-100, windowHeight/2);
-      text("Press 'r' to reset game.", windowWidth/2-100, windowHeight/2+textSize);
+      text("Press 'r' to reset game.", windowWidth/2-100, windowHeight/2+textSize1);
     }
 }
 
@@ -377,6 +389,17 @@ function speechBubble(x, y, something) {
        windowWidth/4*0.8, windowHeight/10*0.8+(windowHeight/10*0.8)/3);
   fill(0,0,0);
   text(something, 20, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
+  translate(-x, -y);
+
+}
+
+function notification(x, y, something) {
+  noStroke();
+  fill("#ffffff")
+  translate(x, y);
+  rect(0, 0, windowWidth/4*0.8, windowHeight/10*0.8);
+  fill(0,0,0);
+  text(something, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
   translate(-x, -y);
 
 }
