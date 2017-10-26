@@ -87,6 +87,9 @@ var goDownstairs;
 // counts hp status of stairs
 var hit;
 var stairsStatus;
+
+// counts hp status of door
+var doorStatus;
 var hit2;
 
 // records where you chose to look
@@ -220,6 +223,7 @@ takeHer = ["I should probably take her with me to the lab - we’ll be able to p
 
     hit = 0;
     stairsStatus = "alive";
+    doorStatus = "alive";
 
     poiret = loadFont("assets/PoiretOne-Regular.ttf");
     textSize1 = 20;
@@ -469,9 +473,26 @@ else if (scene == "messages") {
   text(wait[scriptCount - 52], textLoc[0], textLoc[1], windowWidth-80, 100);
 }
 } else if (scene == "take" && scriptCount - 63 < takeHer.length) {
+if (scriptCount - 63 == takeHer.length - 1) {
+  if (doorStatus == "alive") {
+    if (hit < 10) {
+      fill("#1DFF83");
+      rect(windowWidth-250, 20, 200, 20);
+      fill(0,0,0);
+      rect(windowWidth-250, 20, 20*hit, 20);
+      text(takeHer[takeHer.length-1], textLoc[0], textLoc[1], windowWidth-80, 100);
+      scriptCount = takeHer.length+62;
+    } else {
+      doorStatus = "dead";
+      scriptCount++;
+      scene = "ending";
+    }
+  }
+} else {
+  hit = 0;
   text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-80, 100);
 }
-else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
+} else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
       text("YOU DEAD", windowWidth/2-100, windowHeight/2);
