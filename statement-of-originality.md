@@ -60,3 +60,15 @@ CC0 Creative Commons (licence found in link above)
 Phone image by OpenClipart-Vectors on Pixabay
 https://pixabay.com/en/smartphone-white-cellphone-mobile-157082/
 CC0 Creative Commons (licence found in link above)
+
+Basement image by tobbo on Pixabay
+https://pixabay.com/en/bunker-dark-basement-soprum-554239/
+CC0 Creative Commons (licence found in link above)
+
+Echo360 image by WikimediaImages on Pixabay
+https://pixabay.com/en/accuracy-international-as50-872190/
+CC0 Creative Commons (licence found in link above)
+
+Actual phone image by alles on Pixabay
+https://pixabay.com/en/old-phone-phone-link-call-2436202/
+CC0 Creative Commons (licence found in link above)

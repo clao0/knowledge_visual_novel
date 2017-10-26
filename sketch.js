@@ -276,7 +276,7 @@ function draw() {
       scene = "messages";
     } else if (scene == "voicemail" && scriptCount > 37 && b) {
       scene = "escape";
-    }
+    } 
 
     fill(0,0,0);
     textFont(poiret, textSize1);
@@ -423,7 +423,11 @@ else if (scene == "messages") {
   notification(windowWidth*3/8+40, windowHeight/10*2.5+90, "Cant believe its already been 5 years", 1.5);
   notification(windowWidth*3/8+40, windowHeight/10*4+80, "So proud of u even the Prez approves of ur work!!", 1.5)
   notification(windowWidth*3/8+40, windowHeight/10*5.5+70, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
-} else if (scene == "escape") {
+} else if (scene == "escape" && scriptCount-38 <= escape.length) {
+  if (scriptCount - 38 == escape.length) {
+    text(option6[0], textLoc[0], textLoc[1], windowWidth-80, 100);
+    text(option6[1], textLoc[0], textLoc[1], windowWidth-80, 100);
+  }
   text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-80, 100);
 } else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
