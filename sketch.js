@@ -220,8 +220,8 @@ deathScene2 = []; // open the windows
 deathScene3 = []; // shoot Honeybunny
 
     scriptCount = 0;
-    txtScreenH = 200;
-    txtMargin = 20;
+    txtScreenH = windowHeight/3.66;
+    txtMargin = txtScreenH/10;
     border = loadImage("assets/border.png");
     bedroom = loadImage("assets/bed3.jpg");
     corridor = loadImage("assets/corridor.jpg");
@@ -253,15 +253,12 @@ deathScene3 = []; // shoot Honeybunny
     goDownstairs = false;
     drawersSelected = false;
 
-    drawersX = 100;
-    drawersY = 100;
-
     hit = 0;
     stairsStatus = "alive";
     doorStatus = "alive";
 
     poiret = loadFont("assets/PoiretOne-Regular.ttf");
-    textSize1 = 20;
+    textSize1 = windowHeight/36.6;
 }
 
 function draw() {
@@ -361,8 +358,8 @@ function draw() {
 
     if (scriptCount == scene1.length) {
       // go to sleep option
-      text(option1[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-      text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+      text(option1[0], textLoc[0], textLoc[1], windowWidth/19.175, windowHeight/7.32);
+      text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, windowWidth/19.175);
     } else if (scriptCount == scene1.length+scene1a.length+1 && scene == "1a") {
       // go upstairs and downstairs option
       image(stairs, 0, 0, windowWidth/3, windowHeight);
@@ -385,33 +382,33 @@ function draw() {
       strokeWeight(5);
       rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
       fill(0,0,0);
-      text(option2[0], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(option2[0], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
     } else if (scene == 2 && scriptCount == 7+scene2a.length) {
       // look around option
-      text(option3[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-      if (mouseX >= windowWidth/3 && mouseX <= windowWidth/3+100
-      && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+100) {
+      text(option3[0], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
+      if (mouseX >= windowWidth/3 && mouseX <= windowWidth/3+windowWidth/19.175
+      && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowWidth/19.175) {
         scene = "labreport";
         scriptCount++;
     } else {
-      image(drawers, windowWidth/3, windowHeight/2, 100, 100);
+      image(drawers, windowWidth/3, windowHeight/2, windowWidth/19.175, windowWidth/19.175);
     }
-    if (mouseX >= windowWidth/2 && mouseX <= windowWidth/2+50
-    && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+100) {
+    if (mouseX >= windowWidth/2 && mouseX <= windowWidth/2+windowWidth/19.175/2
+    && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowWidth/19.175) {
       scene = "news";
       scriptCount++;
     } else {
-    image(remote, windowWidth/2, windowHeight/2, 50, 100);
+    image(remote, windowWidth/2, windowHeight/2, windowWidth/19.175/2, windowWidth/19.175);
   }
     } else if (scene == 1 && scriptCount <= 3) {
-      text(scene1[scriptCount], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(scene1[scriptCount], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
     } else if (scene == "1a" && scriptCount-4 < scene1a.length) {
       if (scriptCount == scene1.length+scene1a.length) {
         textFont(poiret, textSize1*2.2);
-        text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-80, 100);
+        text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
         textFont(poiret, textSize1);
       } else {
-      text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
        }
     } else if (scene == 2 && scriptCount-7 < scene2a.length) {
       if (stairsStatus == "alive") {
@@ -420,12 +417,12 @@ function draw() {
           rect(windowWidth-250, 20, 200, 20);
           fill(0,0,0);
           rect(windowWidth-250, 20, 20*hit, 20);
-          text(scene2a[0], textLoc[0], textLoc[1], windowWidth-80, 100);
+          text(scene2a[0], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
           scriptCount = 7;
         } else {
           stairsStatus = "dead";
           scriptCount++;
-          text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth-80, 100);
+          text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth/19.175, 100);
         }
       } else {
         background(office);
@@ -439,26 +436,26 @@ function draw() {
         strokeWeight(5);
         rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
         fill(0,0,0);
-        text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth-80, 100);
+        text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth/19.175, 100);
       }
     } else if (scene == "labreport" && scriptCount <= 16) {
       // sets labreport scene
-      text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth/19.175, 100);
     } else if (scene == "labreport" && scriptCount < 24) {
-      text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth/19.175, 100);
     } else if (scene == "news" && scriptCount - 11 < news.length) {
-      text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth/19.175, 100);
     } else if (scene == "1b" && scriptCount-4 < scene1b.length) {
-      text(scene1b[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(scene1b[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth/19.175, 100);
     } else if (scene == 3 && scriptCount - 24 < scene3.length) {
       if (scriptCount == 28) {
-        text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth-80, 100);
-        text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
-        text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+        text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+        text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
+        text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, 100);
       }
-      text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth/19.175, 100);
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
-      text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth/19.175, 100);
     } else if (scene == "phone") {
       background("#ffd1e5");
       image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
@@ -485,11 +482,11 @@ function draw() {
     }
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
   if (scriptCount - 29 == voicemail.length) {
-    text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-80, 100);
-    text(option5[2], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
-    text(option5[3], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+    text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth/19.175, 100);
+    text(option5[2], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
+    text(option5[3], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, 100);
   } else {
-    text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth-80, 100);
+    text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth/19.175, 100);
   }
 }
 else if (scene == "messages") {
@@ -503,17 +500,17 @@ else if (scene == "messages") {
   notification(windowWidth*3/8+40, windowHeight/10*5.5+70, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
 } else if (scene == "escape" && scriptCount-38 <= escape.length) {
   if (scriptCount - 38 == escape.length) {
-    text(option6[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-    text(option6[1], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+    text(option6[0], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+    text(option6[1], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
   } else {
-  text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-80, 100);
+  text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth/19.175, 100);
 }
 } else if (scene == "wait" && scriptCount - 52 <= wait.length) {
   if (scriptCount - 52 == wait.length) {
-    text(option7[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-    text(option7[1], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+    text(option7[0], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+    text(option7[1], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
   } else {
-  text(wait[scriptCount - 52], textLoc[0], textLoc[1], windowWidth-80, 100);
+  text(wait[scriptCount - 52], textLoc[0], textLoc[1], windowWidth/19.175, 100);
 }
 } else if (scene == "take" && scriptCount - 63 < takeHer.length) {
 if (scriptCount - 63 == takeHer.length - 1) {
@@ -523,7 +520,7 @@ if (scriptCount - 63 == takeHer.length - 1) {
       rect(windowWidth-250, 20, 200, 20);
       fill(0,0,0);
       rect(windowWidth-250, 20, 20*hit, 20);
-      text(takeHer[takeHer.length-1], textLoc[0], textLoc[1], windowWidth-80, 100);
+      text(takeHer[takeHer.length-1], textLoc[0], textLoc[1], windowWidth/19.175, 100);
       scriptCount = takeHer.length+62;
     } else {
       doorStatus = "dead";
@@ -533,18 +530,18 @@ if (scriptCount - 63 == takeHer.length - 1) {
   }
 } else {
   hit = 0;
-  text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-80, 100);
+  text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth/19.175, 100);
 }
 } else if (scene == "ending" && scriptCount-68 <= ending.length) {
   if (scriptCount - 68 == ending.length) {
-    text(option8[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-    text(option8[1], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
-    text(option8[2], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+    text(option8[0], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+    text(option8[1], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
+    text(option8[2], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, 100);
   } else {
-  text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth-80, 100);
+  text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth/19.175, 100);
 }
 } else if (scene == "goodEnding" && scriptCount-73 < goodEnding.length) {
-  text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-80, 100);
+  text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth/19.175, 100);
 }
  else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
@@ -570,16 +567,6 @@ function keyPressed() {
   }
   }
 
-  if (keyCode == LEFT_ARROW) {
-    if (scene == "1a" || scene == "1b" && scriptCount-1 <= 4) {
-      scriptCount == 4;
-    } else if (scriptCount-1 >= 0) {
-    moveBackwards = true;
-    scriptCount--;
-    moveBackwards = false;
-  }
-
-  }
 
   if (keyCode == UP_ARROW) {
    b = false;
