@@ -332,8 +332,8 @@ function draw() {
       text("17:20", windowWidth*3/8+windowWidth/8-55, windowHeight/10+110);
       textSize(20);
       text("Dr. I.M. Scrood's phone", windowWidth*3/8+80, windowHeight/10+140)
-      notification(windowWidth*3/8+40, windowHeight*3/20+120, "3 texts from Honeybunny xoxox");
-      notification(windowWidth*3/8+40, windowHeight/4+120, "1 missed call from Dr. Nerva Sorek");
+      notification(windowWidth*3/8+40, windowHeight*3/20+120, "4 texts from Honeybunny xoxox", 1);
+      notification(windowWidth*3/8+40, windowHeight/4+120, "1 missed call from Dr. Nerva Sorek", 1);
 
       text(mouseX, 30, 30);
       text(mouseY, 30, 60);
@@ -348,7 +348,16 @@ function draw() {
   }
 } else if (scene == "voicemail" && (scriptCount-28) <= voicemail.length) {
   text(voicemail[scriptCount-28], textLoc[0], textLoc[1], windowWidth-80, 100);
-}
+} else if (scene == "messages") {
+  background("#ffd1e5");
+  image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
+  fill("#d2f5f7");
+  image(phoneBackground, windowWidth*3/8+30, windowHeight/20+100, windowWidth/4-55, windowHeight*9/10-200);
+  notification(windowWidth*3/8+40, windowHeight/10+100, "Hey babe ;) So excited for our dinner tonight", 1.5);
+  notification(windowWidth*3/8+40, windowHeight/10*2.5+90, "Cant believe its already been 5 years", 1.5);
+  notification(windowWidth*3/8+40, windowHeight/10*4+80, "So proud of u even the Prez approves of ur work!!", 1.5)
+  notification(windowWidth*3/8+40, windowHeight/10*5.5+70, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
+ }
      else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
@@ -422,11 +431,11 @@ function speechBubble(x, y, something) {
 
 }
 
-function notification(x, y, something) {
+function notification(x, y, something, height) {
   noStroke();
   fill("#ffffff")
   translate(x, y);
-  rect(0, 0, windowWidth/4*0.8, windowHeight/10*0.8);
+  rect(0, 0, windowWidth/4*0.8, windowHeight/10*0.8*height);
   fill(0,0,0);
   text(something, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
   translate(-x, -y);

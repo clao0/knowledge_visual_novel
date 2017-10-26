@@ -1,6 +1,6 @@
 # Statement of Originality
 
-I <INSERT YOUR NAME HERE> declare that everything I have submitted in this major
+I, Cecilia Lao, declare that everything I have submitted in this major
 project is entirely my own work, with the following exceptions:
 
 ## Inspiration
@@ -8,3 +8,55 @@ project is entirely my own work, with the following exceptions:
 ## Code
 
 ## Assets
+
+Office image by MagicDesk on Pixabay
+https://pixabay.com/en/office-sitting-room-executive-730681/
+CC0 Creative Commons (licence found in link above)
+
+Bedroom image by GregoryButler on pixabay
+https://pixabay.com/en/bedroom-architectural-interior-389254/
+CC0 Creative Commons (licence found in link above)
+
+Hallway image by PIRO4D on Pixabay
+https://pixabay.com/en/floor-gang-input-entrance-hall-2228277/
+CC0 Creative Commons (licence found in link above)
+
+Stairway image by palmettophoto1 on Pixabay
+https://pixabay.com/en/luxury-real-estate-stair-winding-1689964/
+CC0 Creative Commons (licence found in link above)
+
+Reporter image by Neva79 on Pixabay
+https://pixabay.com/en/reporter-camera-journalist-media-852096/
+CC0 Creative Commons (licence found in link above)
+
+Report image by Andrys on Pixabay
+https://pixabay.com/en/letter-handwriting-family-letters-447577/
+CC0 Creative Commons (licence found in link above)
+
+Phone image by TeroVesalainen on Pixabay
+https://pixabay.com/en/smartphone-white-silver-gray-1957740/
+CCO Creative Commons (licence found in link above)
+
+Weird image by stuarthampton on Pixabay
+https://pixabay.com/en/painting-art-artist-hippie-hippy-2265351/
+CC0 Creative Commons (licence found in link above)
+
+Trippy image by allyartist on Pixabay
+https://pixabay.com/en/trippy-surreal-art-flowers-1496126/
+CC0 Creative Commons (licence found in link above)
+
+Voicemail image by Gellinger on Pixabay
+https://pixabay.com/en/phone-communication-call-select-735062/
+CC0 Creative Commons (licence found in link above)
+
+Tunnel image by Pexels on Pixabay
+https://pixabay.com/en/concrete-lights-perspective-tunnel-1845046/
+CC0 Creative Commons (licence found in link above)
+
+Bedroom image by Pexels on Pixabay
+https://pixabay.com/en/bed-bedroom-carpet-curtains-1839183/
+CC0 Creative Commons (licence found in link above)
+
+Phone image by OpenClipart-Vectors on Pixabay
+https://pixabay.com/en/smartphone-white-cellphone-mobile-157082/
+CC0 Creative Commons (licence found in link above)
