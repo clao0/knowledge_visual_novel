@@ -215,7 +215,16 @@ badEnding = ["“GUYS SDASLDFJASDLF PRESIDENT DICK TATER IS LYING SAVE YOURSELVE
 "We were the only survivors left in Canberra.",
 "We were completely alone."];
 
-deathScene1 = []; // never wake up
+deathScene1 = ["Now, a reasonable person would probably try to pinpoint their surroundings or figure out exactly what’s going on.",
+"BUT, “reasonableness” is overrated and this blanket’s fluffiness level is absolutely heavenly.",
+"Also, it appears to be morning and only absolute freaks of nature willingly wake up before 3pm.",
+"In fact, I feel like I could almost fall asleep… forever.",
+"A wave of drowsiness hits, and you pull the blanket closer until it’s snug like a second skin. The tension drains out of your body, muscles relaxing as your breaths become deeper.",
+"...In ",
+"Out...",
+"...In",
+"Out...",
+"...In"]; // never wake up
 deathScene2 = []; // open the windows
 deathScene3 = []; // shoot Honeybunny
 
@@ -445,8 +454,8 @@ function draw() {
       text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "news" && scriptCount - 11 < news.length) {
       text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
-    } else if (scene == "1b" && scriptCount-4 < scene1b.length) {
-      text(scene1b[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    } else if (scene == "1b" && scriptCount-4 < deathScene1.length) {
+      text(deathScene1[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == 3 && scriptCount - 24 < scene3.length) {
       if (scriptCount == 28) {
         text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -546,11 +555,11 @@ if (scriptCount - 63 == takeHer.length - 1) {
  else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
-      text("YOU DEAD", windowWidth/2-windowHeight/7.32, windowHeight/2);
+      text("Unfortunately, you have died.", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     } else {
       background("#ffffff");
-      text("ERROR", windowWidth/2-windowHeight/7.32, windowHeight/2);
+      text("Game Over", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     }
 }
@@ -560,7 +569,9 @@ if (scriptCount - 63 == takeHer.length - 1) {
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
     // TODO: need to include total length later
-    if (scriptCount+1 <= windowHeight/7.320) {
+    if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
+    scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
+  scriptCount != 62 && scriptCount != 73) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
@@ -569,13 +580,19 @@ function keyPressed() {
 
 
   if (keyCode == UP_ARROW) {
+    if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
+    scriptCount == 51 || scriptCount == 62 || scriptCount == 73) {
    b = false;
    a = true;
    scriptCount++;
+ }
  } else if (keyCode == DOWN_ARROW){
+   if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
+   scriptCount == 51 || scriptCount == 62 || scriptCount == 73) {
    a = false;
    b = true;
    scriptCount++;
+ }
  }
 }
 
@@ -620,14 +637,3 @@ function notification(x, y, textMsg, height) {
   textSize(textSize1);
 
 }
-
-// function cheet(x, y, textMsg, height) {
-//   noStroke();
-//   fill("#ffffff")
-//   translate(x, y);
-//   rect(0, 0, windowWidth/4*0.8, windowHeight/5*0.8*height);
-//   fill(0,0,0);
-//   text(textMsg, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10
-//   translate(-x, -y);
-//   strokeWeight(5);
-// }
