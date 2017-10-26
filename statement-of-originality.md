@@ -72,3 +72,11 @@ CC0 Creative Commons (licence found in link above)
 Actual phone image by alles on Pixabay
 https://pixabay.com/en/old-phone-phone-link-call-2436202/
 CC0 Creative Commons (licence found in link above)
+
+Target image by OpenClipart-Vectors on Pixabay
+https://pixabay.com/en/crosshairs-crosslines-cross-hairs-146113/
+CC0 Creative Commons (licence found in link above)
+
+Shadow image by OpenClipart-Vectors on Pixabay
+https://pixabay.com/en/ghost-spooky-hood-halloween-scary-303833/
+CC0 Creative Commons (licence found in link above)
