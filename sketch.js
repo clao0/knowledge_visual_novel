@@ -16,6 +16,9 @@ var scene1a;
 var scene1b;
 var scene2;
 var scene3;
+var escape;
+var wait;
+var takeHer;
 
 var script;
 
@@ -40,6 +43,7 @@ var phone;
 var phoneBackground;
 var phoneScreen;
 var phoneCall;
+var tunnel;
 
 // images for clicking
 var drawers;
@@ -53,6 +57,8 @@ var option2;
 var option3;
 var option4;
 var option5;
+var option6;
+var option7;
 
 // booleans for which option you picked
 var a;
@@ -74,6 +80,7 @@ var goDownstairs;
 // counts hp status of stairs
 var hit;
 var stairsStatus;
+var hit2;
 
 // records where you chose to look
 var drawersSelected;
@@ -110,6 +117,8 @@ function setup() {
     option4 = ["1) Open the window", "2) Check my phone"];
     option5 = ["1) Listen to the voicemail", "2) Open the windows",
   "1) Read the messages", "2) No, I need to escape now", "1) Open the windows"];
+    option6 = ["1) Shoot immediately", "2) Wait and see"];
+    option7 = ["1) She's dangerous, shoot her now.", "2) Take here with you."];
 
     labReport = ["There appears to be a document of some kind.", "Examinitis treatment: Stage 1 observations",
   "Subjects seemed to have recovered from initial symptoms. Respiratory and heart rates have stabilised.",
@@ -135,6 +144,33 @@ function setup() {
 "There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.",
 "We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 100m radius.",
 "Bring a weapon. The Echo360 is at tunnel’s entrance."];
+   escape = ["As an expert, Dr. Sorek sounds far more trustworthy than “Honeybunny” or President Tater’s propaganda. I guess I better take my chances.",
+ "Hurrying downstairs, I notice a strange contraption hanging by the door.",
+"Hmmm…. I supposed this must be the Echo360? I pick it up.",
+"“WARNING: HIGHLY LETHAL. CONTAINS 3 SHOTS”",
+"Guess I better ration out my usage then.",
+"The tunnel gives off an eerie vibe, but I suppose that’s supposed to be expected when you’re essentially in the middle of a zombie apocalypse.",
+"This is a very grave situation indeed.",
+"I might just drop dead from anxiety.",
+"!!!", "You have notifications from Zone B",
+"District ETN? Hang on, that's where I am.",
+"I freeze. There’s the sound of footsteps approaching.",
+"Wait… that couldn’t be a... could it?"];
+wait = ["I decide to bide my time and wait - it’s always better to be safe than sorry.",
+"Snugglemuffin, is that you?",
+"You didn't answer any of my messages, and I was worried to death - so I came looking for you.",
+"Everyone outside was behaving so weirdly though...",
+"They kept screaming stuff like 'brainnnnnnnnssssssssssss' and trying to grab me.",
+"Guess being a professional MMA fighter pays off right?",
+"Hang on... so you were outside? And inhaled the fluff?",
+"Yeah, totally. I didn't want to catch examinitis right?",
+"How on earth can she still be ok? The effects of fluff are supposed to be immediate. What on earth...?"];
+takeHer = ["I should probably take her with me to the lab - we’ll be able to properly examine her there.",
+"Besides if anything goes wrong I always have the Echo360 with me.",
+"There's no time to talk - we need to get going now.",
+"Hurrying along the tunnel, we make our way to the end... only to be confronted with a barricaded door.",
+"Well... I guess we have no choice but the break it down."];
+
     scriptCount = 0;
     txtScreenH = 200;
     txtMargin = 20;
@@ -149,7 +185,7 @@ function setup() {
     weird = loadImage("assets/trippy.jpg");
     phoneBackground = loadImage("assets/phonebkg.jpg");
     phoneCall = loadImage("assets/phoneCall.jpg");
-
+    tunnel = loadImage("assets/tunnel.jpg");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -193,6 +229,8 @@ function draw() {
       background(weird);
     } else if (scene == "voicemail") {
       background(phoneCall);
+    } else if (scene == "tunnel") {
+      background(tunnel);
     }
 
     fill(0,0,0);
@@ -224,6 +262,10 @@ function draw() {
       scene = 3;
     } else if (scene == 3 && b) {
       scene = "phone";
+    } else if (scene == "voicemail" && scriptCount > 37 && a) {
+      scene = "messages";
+    } else if (scene == "voicemail" && scriptCount > 37 && b) {
+      scene = "escape";
     }
 
     fill(0,0,0);
@@ -354,12 +396,12 @@ function draw() {
       scene = "voicemail";
     }
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
-  if (scriptCount - 31 == voicemail.length) {
+  if (scriptCount - 29 == voicemail.length) {
     text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-80, 100);
     text(option5[0], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
     text(option5[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
   } else {
-    text(voicemail[scriptCount-28], textLoc[0], textLoc[1], windowWidth-80, 100);
+    text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth-80, 100);
   }
 }
 else if (scene == "messages") {
@@ -371,8 +413,9 @@ else if (scene == "messages") {
   notification(windowWidth*3/8+40, windowHeight/10*2.5+90, "Cant believe its already been 5 years", 1.5);
   notification(windowWidth*3/8+40, windowHeight/10*4+80, "So proud of u even the Prez approves of ur work!!", 1.5)
   notification(windowWidth*3/8+40, windowHeight/10*5.5+70, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
- }
-     else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
+} else if (scene == "tunnel") {
+  text(escape[scriptCount - 10], textLoc[0], textLoc[1], windowWidth-80, 100);
+} else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
       text("YOU DEAD", windowWidth/2-100, windowHeight/2);
@@ -443,15 +486,28 @@ function speechBubble(x, y, something) {
   text(something, 20, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
   translate(-x, -y);
 
+
 }
 
-function notification(x, y, something, height) {
+function notification(x, y, textMsg, height) {
   noStroke();
   fill("#ffffff")
   translate(x, y);
   rect(0, 0, windowWidth/4*0.8, windowHeight/10*0.8*height);
   fill(0,0,0);
-  text(something, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
+  text(textMsg, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
   translate(-x, -y);
+  strokeWeight(5);
 
+}
+
+function cheet(x, y, textMsg, height) {
+  noStroke();
+  fill("#ffffff")
+  translate(x, y);
+  rect(0, 0, windowWidth/4*0.8, windowHeight/5*0.8*height);
+  fill(0,0,0);
+  text(textMsg, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10
+  translate(-x, -y);
+  strokeWeight(5);
 }
