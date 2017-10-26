@@ -51,6 +51,8 @@ var backgroundName;
 var option1;
 var option2;
 var option3;
+var option4;
+var option5;
 
 // booleans for which option you picked
 var a;
@@ -82,6 +84,7 @@ var news;
 var messages;
 var voicemail;
 
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     // any additional setup code goes here
@@ -104,7 +107,10 @@ function setup() {
     option1 = ["1) Try and recall what happened last night.", "2) Who cares? Go back to sleep."];
     option2 = ["Whatever, I guess I should probably look around."];
     option3 = ["Hmmmm... I should look at the..."];
-    option4 = ["1) Open the window", "2) Check my phone"]
+    option4 = ["1) Open the window", "2) Check my phone"];
+    option5 = ["1) Listen to the voicemail", "2) Open the windows",
+  "1) Read the messages", "2) No, I need to escape now", "1) Open the windows"];
+
     labReport = ["There appears to be a document of some kind.", "Examinitis treatment: Stage 1 observations",
   "Subjects seemed to have recovered from initial symptoms. Respiratory and heart rates have stabilised.",
 "Certain subjects have begun to exhibit strange symptoms such as foaming at the mouth, biting other subjects and sporadic violent tendencies. At 17:20 Subject 666 reportedly attempted to cannibalise other subjects.",
@@ -142,6 +148,7 @@ function setup() {
     phone = loadImage("assets/phone.png");
     weird = loadImage("assets/trippy.jpg");
     phoneBackground = loadImage("assets/phonebkg.jpg");
+    phoneCall = loadImage("assets/phoneCall.jpg");
 
 
     drawers = loadImage("assets/drawers.jpg");
@@ -232,14 +239,14 @@ function draw() {
       image(corridor, windowWidth*2/3, 0, windowWidth/3, windowHeight);
 
      if (mouseX < windowWidth/3 && mouseY < windowHeight-txtScreenH) {
-       image(stairs, 0, 0, windowWidth/3+frameCount*3%windowWidth*2/3, windowHeight);
-       if (frameCount*3 > windowWidth*2/3) {
+       image(stairs, 0, 0, windowWidth/3+frameCount*10%windowWidth*2/3, windowHeight);
+       if (frameCount*10 > windowWidth*2/3) {
          scene = 2;
        }
      } else if (mouseX > windowWidth*2/3 && mouseY < windowHeight-txtScreenH){
-       image(corridor, windowWidth*2/3 - frameCount*3%600, 0, windowWidth*2/3+frameCount*3%windowWidth*2/3, windowHeight);
+       image(corridor, windowWidth*2/3 - frameCount*10%600, 0, windowWidth*2/3+frameCount*10%windowWidth*2/3, windowHeight);
        goDownstairs = true;
-       if (frameCount*3 > windowWidth*2/3) {
+       if (frameCount*10 > windowWidth*2/3) {
          scene = "2b";
        }
      }
@@ -342,13 +349,20 @@ function draw() {
       if (mouseX >= windowWidth*3/8+40 && mouseX <= ((windowWidth*3/8+40)+windowWidth/4*0.8)
     && mouseY >= windowHeight*3/20+120 && mouseY <= (windowHeight*3/20+120)+windowHeight/10*0.8) {
       scene = "messages";
-    } else if (mouseX >= windowWidth*3/8+40 && mouseX <= (windowWidth*3/8+40)+windowWidth/4*0.8
-  && mouseY >= windowHeight/4+120 && mouseY <= (windowHeight/4+120)+windowHeight/10*0.8) {
-    scene = "voicemail";
+    }  else if (mouseX >= windowWidth*3/8+40 && mouseX <= ((windowWidth*3/8+40)+windowWidth/4*0.8)
+    && mouseY >= windowHeight/4+120 && mouseY <= (windowHeight/4+120)+windowHeight/10*0.8) {
+      scene = "voicemail";
+    }
+} else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
+  if (scriptCount - 31 == voicemail.length) {
+    text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-80, 100);
+    text(option5[0], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+    text(option5[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+  } else {
+    text(voicemail[scriptCount-28], textLoc[0], textLoc[1], windowWidth-80, 100);
   }
-} else if (scene == "voicemail" && (scriptCount-28) <= voicemail.length) {
-  text(voicemail[scriptCount-28], textLoc[0], textLoc[1], windowWidth-80, 100);
-} else if (scene == "messages") {
+}
+else if (scene == "messages") {
   background("#ffd1e5");
   image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
   fill("#d2f5f7");
