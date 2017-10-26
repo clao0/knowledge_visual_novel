@@ -80,3 +80,11 @@ CC0 Creative Commons (licence found in link above)
 Shadow image by OpenClipart-Vectors on Pixabay
 https://pixabay.com/en/ghost-spooky-hood-halloween-scary-303833/
 CC0 Creative Commons (licence found in link above)
+
+Door image by cocoparisienne on Pixabay
+https://pixabay.com/en/door-goal-portal-wooden-door-wood-2664419/
+CC0 Creative Commons (licence found in link above)
+
+Splinters image by sapphir1 on Pixabay
+https://pixabay.com/en/pine-wood-chips-logs-wood-2833606/
+CC0 Creative Commons (licence found in link above)

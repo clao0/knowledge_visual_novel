@@ -45,6 +45,12 @@ var phoneScreen;
 var phoneCall;
 var tunnel;
 var basement;
+var woman;
+var door;
+
+// images for sfx
+var splinters;
+var blood;
 
 // images for clicking
 var drawers;
@@ -121,7 +127,7 @@ function setup() {
     option5 = ["1) Listen to the voicemail", "2) Open the windows",
   "1) Read the messages", "2) No, I need to escape now", "1) Escape now", "2) Open the windows"];
     option6 = ["1) Shoot immediately", "2) Wait and see"];
-    option7 = ["1) She's dangerous, shoot her now.", "2) Take here with you."];
+    option7 = ["1) She's dangerous, shoot her now.", "2) Take her with you."];
 
     labReport = ["There appears to be a document of some kind.", "Examinitis treatment: Stage 1 observations",
   "Subjects seemed to have recovered from initial symptoms. Respiratory and heart rates have stabilised.",
@@ -155,24 +161,25 @@ function setup() {
 "The tunnel gives off an eerie vibe, but I suppose that’s supposed to be expected when you’re essentially in the middle of a zombie apocalypse.",
 "This is a very grave situation indeed.",
 "I might just drop dead from anxiety.",
-"!!!", "You have notifications from Zone B",
+"!!!", "'You have notifications from Zone B'",
 "District ETN? Hang on, that's where I am.",
 "I freeze. There’s the sound of footsteps approaching.",
 "Wait… that couldn’t be a... could it?"];
 wait = ["I decide to bide my time and wait - it’s always better to be safe than sorry.",
-"Snugglemuffin, is that you?",
-"You didn't answer any of my messages, and I was worried to death - so I came looking for you.",
-"Everyone outside was behaving so weirdly though...",
-"They kept screaming stuff like 'brainnnnnnnnssssssssssss' and trying to grab me.",
-"Guess being a professional MMA fighter pays off right?",
-"Hang on... so you were outside? And inhaled the fluff?",
-"Yeah, totally. I didn't want to catch examinitis right?",
+"As the figure approaches, I realise it’s not so foreign after all.",
+"'Snugglemuffin, is that you?''",
+"'You didn't answer any of my messages, and I was worried to death - so I came looking for you.'",
+"'Everyone outside was behaving so weirdly though...'",
+"'They kept screaming stuff like 'brainnnnnnnnssssssssssss' and trying to grab me.'",
+"'Guess being a professional MMA fighter pays off right?''",
+"I pause. 'Hang on... so you were outside? And inhaled the fluff?'",
+"'Yeah, totally. I didn't want to catch examinitis right?'",
 "How on earth can she still be ok? The effects of fluff are supposed to be immediate. What on earth...?"];
 takeHer = ["I should probably take her with me to the lab - we’ll be able to properly examine her there.",
 "Besides if anything goes wrong I always have the Echo360 with me.",
-"There's no time to talk - we need to get going now.",
+"'There's no time to talk - we need to get going now.'",
 "Hurrying along the tunnel, we make our way to the end... only to be confronted with a barricaded door.",
-"Well... I guess we have no choice but the break it down."];
+"'Well... I guess we have no choice but the break it down. What a pity. Lovely door.' Honeybunny says, with a dangerous grin on her face."];
 
     scriptCount = 0;
     txtScreenH = 200;
@@ -191,6 +198,9 @@ takeHer = ["I should probably take her with me to the lab - we’ll be able to p
     tunnel = loadImage("assets/tunnel.jpg");
     basement = loadImage("assets/basement.jpg");
     echo360 = loadImage("assets/echo360.jpg");
+    woman = loadImage("assets/woman.jpg");
+    door = loadImage("assets/door.jpg");
+    splinters = loadImage("assets/splinters.png");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -241,6 +251,18 @@ function draw() {
       }
     } else if (scene == "escape") {
       background(tunnel);
+    } else if (scene == "wait") {
+      if (scriptCount - 52 > 1) {
+        background(woman);
+      } else {
+        background(tunnel);
+      }
+    } else if (scene == "take") {
+      if (scriptCount - 63 == takeHer.length-1) {
+        background(door);
+      } else {
+      background(tunnel);
+    }
     }
 
     fill(0,0,0);
@@ -272,11 +294,20 @@ function draw() {
       scene = 3;
     } else if (scene == 3 && b) {
       scene = "phone";
+      b = false;
     } else if (scene == "voicemail" && scriptCount > 37 && a) {
       scene = "messages";
+
     } else if (scene == "voicemail" && scriptCount > 37 && b) {
       scene = "escape";
-    } 
+      b = false;
+    } else if (scene == "escape" && scriptCount > 51 && b) {
+      scene = "wait";
+      b = false;
+    } else if (scene == "wait" && scriptCount > 62 && b) {
+      scene = "take";
+      b = false;
+    }
 
     fill(0,0,0);
     textFont(poiret, textSize1);
@@ -426,10 +457,21 @@ else if (scene == "messages") {
 } else if (scene == "escape" && scriptCount-38 <= escape.length) {
   if (scriptCount - 38 == escape.length) {
     text(option6[0], textLoc[0], textLoc[1], windowWidth-80, 100);
-    text(option6[1], textLoc[0], textLoc[1], windowWidth-80, 100);
-  }
+    text(option6[1], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+  } else {
   text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-80, 100);
-} else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
+}
+} else if (scene == "wait" && scriptCount - 52 <= wait.length) {
+  if (scriptCount - 52 == wait.length) {
+    text(option7[0], textLoc[0], textLoc[1], windowWidth-80, 100);
+    text(option7[1], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+  } else {
+  text(wait[scriptCount - 52], textLoc[0], textLoc[1], windowWidth-80, 100);
+}
+} else if (scene == "take" && scriptCount - 63 < takeHer.length) {
+  text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-80, 100);
+}
+else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
       text("YOU DEAD", windowWidth/2-100, windowHeight/2);
