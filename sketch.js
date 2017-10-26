@@ -19,6 +19,13 @@ var scene3;
 var escape;
 var wait;
 var takeHer;
+var ending;
+var goodEnding;
+var badEnding;
+
+var deathScene1;
+var deathScene2;
+var deathScene3;
 
 var script;
 
@@ -66,6 +73,7 @@ var option4;
 var option5;
 var option6;
 var option7;
+var option8;
 
 // booleans for which option you picked
 var a;
@@ -101,6 +109,7 @@ var news;
 var messages;
 var voicemail;
 
+// image for weapon
 var echo360;
 
 
@@ -183,6 +192,32 @@ takeHer = ["I should probably take her with me to the lab - we’ll be able to p
 "'There's no time to talk - we need to get going now.'",
 "Hurrying along the tunnel, we make our way to the end... only to be confronted with a barricaded door.",
 "'Well... I guess we have no choice but the break it down. What a pity. Lovely door.' Honeybunny says, with a dangerous grin on her face."];
+
+ending = ["At last, we entered the lab.",
+"Turns out they had barricaded the door after getting the Zone B alert, but evidently it had turned out to be a false alarm.",
+"After informing them of Honeybunny’s circumstances, we rushed her to the lab, to undergo extensive testing. Being apart for a grand total of 2 hours was excruciatingly painful, but I cried gushing waterfalls of tears for its entirety but I reminded myself it was for the good of mankind.",
+"When the results came back, we were absolutely shocked. Turns out her frequent consumption of energy drink “Blue Buffalo” had saved her.",
+"While “blue buffalo” was in one’s system, it rendered them immune to the nefarious effects of fluff."];
+option8 = ["Dr. Sorek turned to me. 'Dr. Scrood, what do you think we should do?'",
+ "1) Hack into FML news and broadcast the info", "2) Make a Bookface post - it can't wait!"];
+goodEnding = ["“Live from FML news this is Mind-”",
+"“Hello fellow citizens. This is Dr. I. M. Scrood from the AHNO Medical school. I regret to inform you that there has been some misleading information regarding stage 2 testing…”",
+"After the broadcast, all hell broke loose. The civilians were outraged - how could they not when their very own President had lied to them, and attempted to slaughter his own people?",
+"People began sharing Blue Buffalo between their friends, their acquaintances and slowly by slowly, both the outbreak of fluff and examinitis began to recede.",
+"However, things did not go as planned for President Dick Tater.",
+"Outrage lead into protests, and protests eventually culminated in his impeachment… as well as a lifetime sentence of doing the laundry by hand for every civilian in the country."];
+badEnding = ["“GUYS SDASLDFJASDLF PRESIDENT DICK TATER IS LYING SAVE YOURSELVES DRINK BLUE BUFFALO!!1”",
+"Overcome by hysteria and emotion, our Bookface post didn’t really have the impact we intended, with the majority disregarding our message.",
+"‘An energy drink curing examinitis? Next you’re going to be claiming the earth is flat.’",
+"Negative comments kept pouring in - even in the midst of a zombie apocalypse people somehow managed to tell us to ‘go diE you insensitive donkey-butts’",
+"The comments kept coming, and coming, and coming… until one day, they just didn’t.",
+"It was then we realised that there was no one left to write them.",
+"We were the only survivors left in Canberra.",
+"We were completely alone."];
+
+deathScene1 = []; // never wake up
+deathScene2 = []; // open the windows
+deathScene3 = []; // shoot Honeybunny
 
     scriptCount = 0;
     txtScreenH = 200;
@@ -492,7 +527,10 @@ if (scriptCount - 63 == takeHer.length - 1) {
   hit = 0;
   text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-80, 100);
 }
-} else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
+} else if (scene == "ending") {
+
+}
+ else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
       text("YOU DEAD", windowWidth/2-100, windowHeight/2);
