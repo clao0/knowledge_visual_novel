@@ -44,6 +44,7 @@ var phoneBackground;
 var phoneScreen;
 var phoneCall;
 var tunnel;
+var basement;
 
 // images for clicking
 var drawers;
@@ -91,6 +92,8 @@ var news;
 var messages;
 var voicemail;
 
+var echo360;
+
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -116,7 +119,7 @@ function setup() {
     option3 = ["Hmmmm... I should look at the..."];
     option4 = ["1) Open the window", "2) Check my phone"];
     option5 = ["1) Listen to the voicemail", "2) Open the windows",
-  "1) Read the messages", "2) No, I need to escape now", "1) Open the windows"];
+  "1) Read the messages", "2) No, I need to escape now", "1) Escape now", "2) Open the windows"];
     option6 = ["1) Shoot immediately", "2) Wait and see"];
     option7 = ["1) She's dangerous, shoot her now.", "2) Take here with you."];
 
@@ -186,6 +189,8 @@ takeHer = ["I should probably take her with me to the lab - we’ll be able to p
     phoneBackground = loadImage("assets/phonebkg.jpg");
     phoneCall = loadImage("assets/phoneCall.jpg");
     tunnel = loadImage("assets/tunnel.jpg");
+    basement = loadImage("assets/basement.jpg");
+    echo360 = loadImage("assets/echo360.jpg");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -229,7 +234,12 @@ function draw() {
       background(weird);
     } else if (scene == "voicemail") {
       background(phoneCall);
-    } else if (scene == "tunnel") {
+    } else if (scene == "escape" && scriptCount - 38 <= 4) {
+      background(basement);
+      if (scriptCount - 38 >= 2 && scriptCount - 38 <= 4) {
+        image(echo360, windowWidth/3, windowHeight/3, windowWidth/3, windowHeight/4);
+      }
+    } else if (scene == "escape") {
       background(tunnel);
     }
 
@@ -398,8 +408,8 @@ function draw() {
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
   if (scriptCount - 29 == voicemail.length) {
     text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-80, 100);
-    text(option5[0], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
-    text(option5[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+    text(option5[2], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+    text(option5[3], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
   } else {
     text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth-80, 100);
   }
@@ -413,8 +423,8 @@ else if (scene == "messages") {
   notification(windowWidth*3/8+40, windowHeight/10*2.5+90, "Cant believe its already been 5 years", 1.5);
   notification(windowWidth*3/8+40, windowHeight/10*4+80, "So proud of u even the Prez approves of ur work!!", 1.5)
   notification(windowWidth*3/8+40, windowHeight/10*5.5+70, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
-} else if (scene == "tunnel") {
-  text(escape[scriptCount - 10], textLoc[0], textLoc[1], windowWidth-80, 100);
+} else if (scene == "escape") {
+  text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-80, 100);
 } else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
@@ -432,7 +442,7 @@ else if (scene == "messages") {
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
     // TODO: need to include total length later
-    if (scriptCount+1 <= 40) {
+    if (scriptCount+1 <= 1000) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
@@ -501,13 +511,13 @@ function notification(x, y, textMsg, height) {
 
 }
 
-function cheet(x, y, textMsg, height) {
-  noStroke();
-  fill("#ffffff")
-  translate(x, y);
-  rect(0, 0, windowWidth/4*0.8, windowHeight/5*0.8*height);
-  fill(0,0,0);
-  text(textMsg, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10
-  translate(-x, -y);
-  strokeWeight(5);
-}
+// function cheet(x, y, textMsg, height) {
+//   noStroke();
+//   fill("#ffffff")
+//   translate(x, y);
+//   rect(0, 0, windowWidth/4*0.8, windowHeight/5*0.8*height);
+//   fill(0,0,0);
+//   text(textMsg, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10
+//   translate(-x, -y);
+//   strokeWeight(5);
+// }
