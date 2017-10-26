@@ -163,7 +163,7 @@ function setup() {
 "The military forcibly seized the “fluff” microbots this morning and implemented stage 2 testing.",
 "You need to escape. Now.",
 "There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.",
-"We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 100m radius.",
+"We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a windowHeight/7.32m radius.",
 "Bring a weapon. The Echo360 is at tunnel’s entrance."];
    escape = ["As an expert, Dr. Sorek sounds far more trustworthy than “Honeybunny” or President Tater’s propaganda. I guess I better take my chances.",
  "Hurrying downstairs, I notice a strange contraption hanging by the door.",
@@ -358,8 +358,8 @@ function draw() {
 
     if (scriptCount == scene1.length) {
       // go to sleep option
-      text(option1[0], textLoc[0], textLoc[1], windowWidth/19.175, windowHeight/7.32);
-      text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, windowWidth/19.175);
+      text(option1[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+      text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scriptCount == scene1.length+scene1a.length+1 && scene == "1a") {
       // go upstairs and downstairs option
       image(stairs, 0, 0, windowWidth/3, windowHeight);
@@ -382,47 +382,47 @@ function draw() {
       strokeWeight(5);
       rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
       fill(0,0,0);
-      text(option2[0], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
+      text(option2[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
     } else if (scene == 2 && scriptCount == 7+scene2a.length) {
       // look around option
-      text(option3[0], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
-      if (mouseX >= windowWidth/3 && mouseX <= windowWidth/3+windowWidth/19.175
-      && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowWidth/19.175) {
+      text(option3[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
+      if (mouseX >= windowWidth/3 && mouseX <= windowWidth/3+windowWidth/15.34
+      && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowHeight/7.32) {
         scene = "labreport";
         scriptCount++;
     } else {
-      image(drawers, windowWidth/3, windowHeight/2, windowWidth/19.175, windowWidth/19.175);
+      image(drawers, windowWidth/3, windowHeight/2, windowWidth/15.34, windowHeight/7.32);
     }
-    if (mouseX >= windowWidth/2 && mouseX <= windowWidth/2+windowWidth/19.175/2
-    && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowWidth/19.175) {
+    if (mouseX >= windowWidth/2 && mouseX <= windowWidth/2+windowWidth/30.68
+    && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowHeight/7.32) {
       scene = "news";
       scriptCount++;
     } else {
-    image(remote, windowWidth/2, windowHeight/2, windowWidth/19.175/2, windowWidth/19.175);
+    image(remote, windowWidth/2, windowHeight/2, windowWidth/30.68, windowHeight/7.32);
   }
     } else if (scene == 1 && scriptCount <= 3) {
-      text(scene1[scriptCount], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
+      text(scene1[scriptCount], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
     } else if (scene == "1a" && scriptCount-4 < scene1a.length) {
       if (scriptCount == scene1.length+scene1a.length) {
         textFont(poiret, textSize1*2.2);
-        text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
+        text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         textFont(poiret, textSize1);
       } else {
-      text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
+      text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
        }
     } else if (scene == 2 && scriptCount-7 < scene2a.length) {
       if (stairsStatus == "alive") {
         if (hit < 10) {
           fill("#1DFF83");
-          rect(windowWidth-250, 20, 200, 20);
+          rect(windowWidth-windowWidth/6.136, windowWidth/76.6, windowWidth/7.67, windowWidth/76.6);
           fill(0,0,0);
-          rect(windowWidth-250, 20, 20*hit, 20);
-          text(scene2a[0], textLoc[0], textLoc[1], windowWidth/19.175, windowWidth/19.175);
+          rect(windowWidth-windowWidth/6.136, windowWidth/76.7, windowWidth/76.7*hit, windowWidth/76.6);
+          text(scene2a[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
           scriptCount = 7;
         } else {
           stairsStatus = "dead";
           scriptCount++;
-          text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+          text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         }
       } else {
         background(office);
@@ -434,83 +434,83 @@ function draw() {
         text(scene, 10, textSize1*6);
         fill("#ffffff");
         strokeWeight(5);
-        rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
+        rect(windowWidth/76.7, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
         fill(0,0,0);
-        text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+        text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
       }
     } else if (scene == "labreport" && scriptCount <= 16) {
       // sets labreport scene
-      text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "labreport" && scriptCount < 24) {
-      text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "news" && scriptCount - 11 < news.length) {
-      text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "1b" && scriptCount-4 < scene1b.length) {
-      text(scene1b[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(scene1b[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == 3 && scriptCount - 24 < scene3.length) {
       if (scriptCount == 28) {
-        text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth/19.175, 100);
-        text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
-        text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, 100);
+        text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+        text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
+        text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
       }
-      text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
-      text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "phone") {
       background("#ffd1e5");
       image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
       fill("#d2f5f7");
-      image(phoneBackground, windowWidth*3/8+30, windowHeight/20+100, windowWidth/4-55, windowHeight*9/10-200);
+      image(phoneBackground, windowWidth*3/8+windowWidth/51.13, windowHeight/20+windowHeight/7.32, windowWidth/4-windowWidth/30.68, windowHeight*9/10-windowHeight/3.66);
       fill("#ffffff");
-      textSize(40);
-      text("17:20", windowWidth*3/8+windowWidth/8-55, windowHeight/10+110);
-      textSize(20);
-      text("Dr. I.M. Scrood's phone", windowWidth*3/8+80, windowHeight/10+140)
-      notification(windowWidth*3/8+40, windowHeight*3/20+120, "4 texts from Honeybunny xoxox", 1);
-      notification(windowWidth*3/8+40, windowHeight/4+120, "1 missed call from Dr. Nerva Sorek", 1);
+      textSize(textSize1*2);
+      text("17:20", windowWidth*3/8+windowWidth/8-windowWidth/27.89, windowHeight/10+windowHeight/6.65);
+      textSize(textSize1*0.8);
+      text("Dr. I.M. Scrood's phone", windowWidth*3/8+windowWidth/19.175, windowHeight/10+windowHeight/5.229, )
+      notification(windowWidth*3/8+windowWidth/38.35, windowHeight*3/20+windowHeight/6.1, "4 texts from Honeybunny xoxox", 1);
+      notification(windowWidth*3/8+windowWidth/38.35, windowHeight/4+windowHeight/6.1, "1 missed call from Dr. Nerva Sorek", 1);
 
       text(mouseX, 30, 30);
       text(mouseY, 30, 60);
       text(scene, 30, 90);
 
-      if (mouseX >= windowWidth*3/8+40 && mouseX <= ((windowWidth*3/8+40)+windowWidth/4*0.8)
-    && mouseY >= windowHeight*3/20+120 && mouseY <= (windowHeight*3/20+120)+windowHeight/10*0.8) {
+      if (mouseX >= windowWidth*3/8+windowWidth/38.35 && mouseX <= ((windowWidth*3/8+windowWidth/38.35)+windowWidth/4*0.8)
+    && mouseY >= windowHeight*3/20+windowHeight/6.1 && mouseY <= (windowHeight*3/20+windowHeight/6.10)+windowHeight/10*0.8) {
       scene = "messages";
-    }  else if (mouseX >= windowWidth*3/8+40 && mouseX <= ((windowWidth*3/8+40)+windowWidth/4*0.8)
-    && mouseY >= windowHeight/4+120 && mouseY <= (windowHeight/4+120)+windowHeight/10*0.8) {
+    }  else if (mouseX >= windowWidth*3/8+windowWidth/38.35 && mouseX <= ((windowWidth*3/8+windowWidth/38.35)+windowWidth/4*0.8)
+    && mouseY >= windowHeight/4+windowHeight/6.1 && mouseY <= (windowHeight/4+windowHeight/6.1)+windowHeight/10*0.8) {
       scene = "voicemail";
     }
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
   if (scriptCount - 29 == voicemail.length) {
-    text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth/19.175, 100);
-    text(option5[2], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
-    text(option5[3], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, 100);
+    text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option5[2], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option5[3], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
   } else {
-    text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+    text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
   }
 }
 else if (scene == "messages") {
   background("#ffd1e5");
   image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
   fill("#d2f5f7");
-  image(phoneBackground, windowWidth*3/8+30, windowHeight/20+100, windowWidth/4-55, windowHeight*9/10-200);
-  notification(windowWidth*3/8+40, windowHeight/10+100, "Hey babe ;) So excited for our dinner tonight", 1.5);
-  notification(windowWidth*3/8+40, windowHeight/10*2.5+90, "Cant believe its already been 5 years", 1.5);
-  notification(windowWidth*3/8+40, windowHeight/10*4+80, "So proud of u even the Prez approves of ur work!!", 1.5)
-  notification(windowWidth*3/8+40, windowHeight/10*5.5+70, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
+    image(phoneBackground, windowWidth*3/8+windowWidth/51.13, windowHeight/20+windowHeight/7.32, windowWidth/4-windowWidth/30.68, windowHeight*9/10-windowHeight/3.66);
+  notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10+windowHeight/7.32, "Hey babe ;) So excited for our dinner tonight", 1.5);
+  notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10*2.5+windowHeight/8.15, "Cant believe its already been 5 years", 1.5);
+  notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10*4+windowHeight/9.175, "So proud of u even the Prez approves of ur work!!", 1.5)
+  notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10*5.5+windowHeight/10.486, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
 } else if (scene == "escape" && scriptCount-38 <= escape.length) {
   if (scriptCount - 38 == escape.length) {
-    text(option6[0], textLoc[0], textLoc[1], windowWidth/19.175, 100);
-    text(option6[1], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
+    text(option6[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option6[1], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
   } else {
-  text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+  text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "wait" && scriptCount - 52 <= wait.length) {
   if (scriptCount - 52 == wait.length) {
-    text(option7[0], textLoc[0], textLoc[1], windowWidth/19.175, 100);
-    text(option7[1], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
+    text(option7[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option7[1], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
   } else {
-  text(wait[scriptCount - 52], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+  text(wait[scriptCount - 52], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "take" && scriptCount - 63 < takeHer.length) {
 if (scriptCount - 63 == takeHer.length - 1) {
@@ -520,7 +520,7 @@ if (scriptCount - 63 == takeHer.length - 1) {
       rect(windowWidth-250, 20, 200, 20);
       fill(0,0,0);
       rect(windowWidth-250, 20, 20*hit, 20);
-      text(takeHer[takeHer.length-1], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+      text(takeHer[takeHer.length-1], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
       scriptCount = takeHer.length+62;
     } else {
       doorStatus = "dead";
@@ -530,28 +530,28 @@ if (scriptCount - 63 == takeHer.length - 1) {
   }
 } else {
   hit = 0;
-  text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+  text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "ending" && scriptCount-68 <= ending.length) {
   if (scriptCount - 68 == ending.length) {
-    text(option8[0], textLoc[0], textLoc[1], windowWidth/19.175, 100);
-    text(option8[1], textLoc[0], textLoc[1]+textSize1, windowWidth/19.175, 100);
-    text(option8[2], textLoc[0], textLoc[1]+textSize1*2, windowWidth/19.175, 100);
+    text(option8[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option8[1], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option8[2], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
   } else {
-  text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+  text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "goodEnding" && scriptCount-73 < goodEnding.length) {
-  text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth/19.175, 100);
+  text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
  else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
       fill("#ffffff");
-      text("YOU DEAD", windowWidth/2-100, windowHeight/2);
-      text("Press 'r' to reset game.", windowWidth/2-100, windowHeight/2+textSize1);
+      text("YOU DEAD", windowWidth/2-windowHeight/7.32, windowHeight/2);
+      text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     } else {
       background("#ffffff");
-      text("ERROR", windowWidth/2-100, windowHeight/2);
-      text("Press 'r' to reset game.", windowWidth/2-100, windowHeight/2+textSize1);
+      text("ERROR", windowWidth/2-windowHeight/7.32, windowHeight/2);
+      text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     }
 }
 
@@ -560,7 +560,7 @@ if (scriptCount - 63 == takeHer.length - 1) {
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
     // TODO: need to include total length later
-    if (scriptCount+1 <= 1000) {
+    if (scriptCount+1 <= windowHeight/7.320) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
@@ -609,13 +609,15 @@ function speechBubble(x, y, something) {
 
 function notification(x, y, textMsg, height) {
   noStroke();
-  fill("#ffffff")
+  fill("#ffffff");
+  textSize(textSize1*0.8);
   translate(x, y);
   rect(0, 0, windowWidth/4*0.8, windowHeight/10*0.8*height);
   fill(0,0,0);
-  text(textMsg, 15, 15, (windowWidth/4*0.8)-10, (windowHeight/10*0.8)-10);
+  text(textMsg, windowWidth/102.26, windowHeight/48.9, (windowWidth/4*0.8)-windowWidth/153.4, (windowHeight/10*0.8)-windowHeight/73.4);
   translate(-x, -y);
   strokeWeight(5);
+  textSize(textSize1);
 
 }
 
