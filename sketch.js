@@ -302,7 +302,9 @@ function draw() {
       } else {
       background(tunnel);
     }
-    }
+  } else if (scene == "ending") {
+    background(office);
+  }
 
     fill(0,0,0);
     text(moveToNext, 10, textSize1);
@@ -345,6 +347,12 @@ function draw() {
       b = false;
     } else if (scene == "wait" && scriptCount > 62 && b) {
       scene = "take";
+      b = false;
+    } else if (scene == "ending" && scriptCount >= 68+ending.length && a) {
+      scene = "goodEnding";
+      a = false;
+    } else if (scene == "ending" && scriptCount >= 68+ending.length && b) {
+      scene = "badEnding";
       b = false;
     }
 
@@ -527,8 +535,16 @@ if (scriptCount - 63 == takeHer.length - 1) {
   hit = 0;
   text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-80, 100);
 }
-} else if (scene == "ending") {
-
+} else if (scene == "ending" && scriptCount-68 <= ending.length) {
+  if (scriptCount - 68 == ending.length) {
+    text(option8[0], textLoc[0], textLoc[1], windowWidth-80, 100);
+    text(option8[1], textLoc[0], textLoc[1]+textSize1, windowWidth-80, 100);
+    text(option8[2], textLoc[0], textLoc[1]+textSize1*2, windowWidth-80, 100);
+  } else {
+  text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth-80, 100);
+}
+} else if (scene == "goodEnding" && scriptCount-73 < goodEnding.length) {
+  text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-80, 100);
 }
  else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
       background(0,0,0);
