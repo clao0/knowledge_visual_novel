@@ -88,3 +88,7 @@ CC0 Creative Commons (licence found in link above)
 Splinters image by sapphir1 on Pixabay
 https://pixabay.com/en/pine-wood-chips-logs-wood-2833606/
 CC0 Creative Commons (licence found in link above)
+
+Lab image by skeeze on Pixabay
+https://pixabay.com/en/scientific-equipment-physicist-2040795/
+CC0 Creative Commons (licence found in link above)

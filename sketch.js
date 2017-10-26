@@ -54,6 +54,7 @@ var tunnel;
 var basement;
 var woman;
 var door;
+var lab;
 
 // images for sfx
 var splinters;
@@ -248,6 +249,7 @@ deathScene3 = []; // shoot Honeybunny
     woman = loadImage("assets/woman.jpg");
     door = loadImage("assets/door.jpg");
     splinters = loadImage("assets/splinters.png");
+    lab = loadImage("assets/lab.jpg");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -285,7 +287,7 @@ function draw() {
       background(report);
     } else if (scene == "news" || scene == "labreport") {
       background(reporter);
-    } else if (scene == 3) {
+    } else if (scene == 3 || scene == 3.1) {
       background(weird);
     } else if (scene == "voicemail") {
       background(phoneCall);
@@ -309,7 +311,7 @@ function draw() {
       background(tunnel);
     }
   } else if (scene == "ending") {
-    background(office);
+    background(lab);
   }
 
     fill(0,0,0);
@@ -342,9 +344,13 @@ function draw() {
     } else if (scene == 3 && b) {
       scene = "phone";
       b = false;
-    } else if (scene == "voicemail" && scriptCount > 37 && a) {
+    } else if (scene == 3.1 && b) {
+      scene = "phone";
+      scriptCount+=7;
+      b = false;
+    }
+    else if (scene == "voicemail" && scriptCount > 37 && a) {
       scene = "messages";
-
     } else if (scene == "voicemail" && scriptCount > 37 && b) {
       scene = "escape";
       b = false;
@@ -452,7 +458,7 @@ function draw() {
       text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "labreport" && scriptCount < 24) {
       text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
-    } else if (scene == "news" && scriptCount - 11 < news.length) {
+    } else if (scene == "news" && scriptCount - 11 <= news.length) {
       text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "1b" && scriptCount-4 < deathScene1.length) {
       text(deathScene1[(scriptCount-4)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -464,7 +470,13 @@ function draw() {
       }
       text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
+      if (scriptCount - 17 == scene3.length-1) {
+        text(scene3[scriptCount-17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+        text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
+        text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
+      } else {
       text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    }
     } else if (scene == "phone") {
       background("#ffd1e5");
       image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
@@ -581,14 +593,14 @@ function keyPressed() {
 
   if (keyCode == UP_ARROW) {
     if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
-    scriptCount == 51 || scriptCount == 62 || scriptCount == 73) {
+    scriptCount == 51 || scriptCount == 62 || scriptCount == 73 || scriptCount == 21) {
    b = false;
    a = true;
    scriptCount++;
  }
  } else if (keyCode == DOWN_ARROW){
    if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
-   scriptCount == 51 || scriptCount == 62 || scriptCount == 73) {
+   scriptCount == 51 || scriptCount == 62 || scriptCount == 73 || scriptCount == 21) {
    a = false;
    b = true;
    scriptCount++;
