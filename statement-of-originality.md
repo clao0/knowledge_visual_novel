@@ -92,3 +92,7 @@ CC0 Creative Commons (licence found in link above)
 Lab image by skeeze on Pixabay
 https://pixabay.com/en/scientific-equipment-physicist-2040795/
 CC0 Creative Commons (licence found in link above)
+
+CityView image by melissamahon on Pixabay
+https://pixabay.com/en/new-york-buildings-tall-top-view-472392/
+CC0 Creative Commons (licence found in link above)

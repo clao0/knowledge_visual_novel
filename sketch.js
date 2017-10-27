@@ -55,6 +55,7 @@ var basement;
 var woman;
 var door;
 var lab;
+var cityView;
 
 // images for sfx
 var splinters;
@@ -226,7 +227,16 @@ deathScene1 = ["Now, a reasonable person would probably try to pinpoint their su
 "...In",
 "Out...",
 "...In"]; // never wake up
-deathScene2 = []; // open the windows
+
+deathScene2 = ["Well, I guess I better do what the authorities have told me. What could possibly go wrong?",
+"I open the window, taking a deep breath of fresh air.",
+"Then I see them, glittering in the air like floating specks of sand. Millions, billions, trillions, of tiny fluff microbots.",
+"I swallow. Something doesn’t feel quite right.",
+"Frantically, I attempt to shut the window but they keep pouring in - an unrelenting storm.",
+"I try to scream, but it comes out more like a strangled shriek. There is fluff lodged in my throat like millions of tiny daggers, and I can taste coppery hints of blood upon my tongue.",
+"Spluttering, choking, gasping, I fall to the floor.",
+"“I can’t believe Mindy Leslie just mindlessly lied to me.”",
+"I die."]; // open the windows
 deathScene3 = []; // shoot Honeybunny
 
     scriptCount = 0;
@@ -250,6 +260,7 @@ deathScene3 = []; // shoot Honeybunny
     door = loadImage("assets/door.jpg");
     splinters = loadImage("assets/splinters.png");
     lab = loadImage("assets/lab.jpg");
+    cityView = loadImage("assets/cityView.jpg");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -312,6 +323,8 @@ function draw() {
     }
   } else if (scene == "ending") {
     background(lab);
+  } else if (scene == "deathScene2") {
+    background(cityView);
   }
 
     fill(0,0,0);
@@ -348,6 +361,13 @@ function draw() {
       scene = "phone";
       scriptCount+=7;
       b = false;
+    } else if (scene == 3 && a) {
+      scene = "deathScene2";
+      a = false;
+    } else if (scene == 3.1 && a) {
+      scene = "deathScene2"
+      scriptCount+=7;
+      a = false;
     }
     else if (scene == "voicemail" && scriptCount > 37 && a) {
       scene = "messages";
@@ -519,6 +539,20 @@ else if (scene == "messages") {
   notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10*2.5+windowHeight/8.15, "Cant believe its already been 5 years", 1.5);
   notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10*4+windowHeight/9.175, "So proud of u even the Prez approves of ur work!!", 1.5)
   notification(windowWidth*3/8+windowWidth/38.35, windowHeight/10*5.5+windowHeight/10.486, "Just be sure to open ur windows ok catch examinitis haha", 1.5);
+
+  notification(windowWidth/76.7*2, windowHeight/36.7, option5[0], 1);
+  notification(windowWidth/76.7*2, windowHeight/36.7+textSize1*5, option5[1], 1);
+
+if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
+&& mouseY >=  windowHeight/36.7 && mouseY <=  windowHeight/36.7+windowHeight/10*0.8) {
+  scene = "voicemail";
+}
+
+if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
+&& mouseY >=  windowHeight/36.7+textSize1*5 && mouseY <=  windowHeight/36.7+textSize1*5+windowHeight/10*0.8) {
+  scene = "deathScene2";
+}
+
 } else if (scene == "escape" && scriptCount-38 <= escape.length) {
   if (scriptCount - 38 == escape.length) {
     text(option6[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -563,8 +597,10 @@ if (scriptCount - 63 == takeHer.length - 1) {
 }
 } else if (scene == "goodEnding" && scriptCount-73 < goodEnding.length) {
   text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+} else if (scene == "deathScene2" && scriptCount - 28 < deathScene2.length) {
+  text(deathScene2[scriptCount - 28], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
- else if (scene == "1b" && scriptCount-4 >= scene1a.length) {
+ else if (scene == "1b" && scriptCount-4 >= scene1a.length || scene == "deathScene2" && scriptCount - 28 >= deathScene2.length) {
       background(0,0,0);
       fill("#ffffff");
       text("Unfortunately, you have died.", windowWidth/2-windowHeight/7.32, windowHeight/2);
@@ -583,7 +619,7 @@ function keyPressed() {
     // TODO: need to include total length later
     if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
     scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
-  scriptCount != 62 && scriptCount != 73) {
+  scriptCount != 62 && scriptCount != 73 && scriptCount != 21) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
