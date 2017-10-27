@@ -1,3 +1,19 @@
 # Interaction Statement
 
-Write your interaction statement in this file (max 500 words).
+At the beginning, the only method of interaction is clicking through to the next ‘page’ of the visual novel by pushing the right arrow. This was made clear to the viewer, by adding instructions in brackets for the first line of text.
+
+After this initial stage, ‘options’ were introduced where users could selects decisions and explore different story paths. The interface for this (up and down arrows) was introduced in a similar fashion with instructions placed in brackets for the first option scene. In order to avoid redundancy, instructions were not repeated.
+
+Keeping the experience engaging was highly important to me. Therefore, I added in a navigation element where the viewer could choose to go upstairs by hovering the mouse over the side with the stairs image on it. Once the stairs image covered the full screen, a battle sequence would start. Whilst there were no instructions for this interaction, as the stairs image suddenly appeared, it is highly likely that the viewer would be curious and hover the image over the left-hand side - either intentionally or unintentionally. After doing so, the image would move, making the method of interaction fairly self-explanatory. This also introduced the idea that the scenery was interactive - a key component of gameplay.
+
+Another element that was introduced early on, was the ‘battle’ scene. This was done initially in a light-hearted manner (fighting the stairs) so the viewer would intuitively know how to interact with it at a later date (breaking down the door to the laboratory.) Once again, instructions were placed for the first occurrence of this interaction, to make this clear. Additionally, sound effects and an hp (health points) bar reminiscent of classic RPG games was added to make this experience engaging. Once the stairs were ‘defeated’ the viewer would proceed onto the next scene.
+
+After arriving in the office, the option to search drawers and turn on the tv by clicking on buttons was introduced. The way to exemplify how to do this to the viewer without explicitly stating so, was to make the buttons suddenly appear when the viewer was told to ‘look around’.
+
+Similarly, after reading the lab report or turning on the TV, the possibility to interact with one’s phone was introduced. At this point in the game, I assumed users would be fairly familiar with click-on/hover over interaction. Therefore, it is likely that they would conclude one could look at messages/listen to phone calls by hovering over the notifications. Furthermore, I intentionally made this scene resemble a real touch-screen phone as a hint.
+
+The final ‘new’ form of interaction was the ability to shoot the mysterious figure whilst escaping in the tunnel. Hovering over the mysterious figure would cause the figure to ‘die’ triggering on of the ‘bad’ endings. As with the case of the phone, the method of interaction was made clear by mimicking real-life objects (i.e. by adding the shooting target, as if looking through a gun.)
+
+Though interaction is continued after this scene, there are no new methods. For instance, when the viewer breaks down the door, it is the same mode of interaction as the stairs. This is signalled by the ‘hp bar’ indicating one needs to ‘defeat’ it to proceed. The remainder of interaction is just ‘flipping through the pages’ via the right arrow and selecting a final option regarding how to publish information - both of which have been present throughout the entire game.
+
+Finally, a ‘reset’ instruction page was created for when one ‘dies’ or completes the game. This was quite self-explanatory. Additionally lines such as “Be careful who you listen to - words can kill” were used to urge the viewers to think critically about information sources and hint at how to ‘win’ the game. Sound effects and multiple backgrounds were used to make the experience engaging and interesting to the viewer.
