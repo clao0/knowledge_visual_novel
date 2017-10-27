@@ -111,6 +111,9 @@ var news;
 var messages;
 var voicemail;
 
+// tracks whether you've read the messages or not
+var readMessages;
+
 // image for weapon
 var echo360;
 
@@ -123,6 +126,7 @@ function setup() {
 
    frameRate(300);
 
+    readMessages = false;
     moveToNext = false;
     moveBackwards = false;
     scene1 = ["...", ".......", "Where am I?"];
@@ -139,7 +143,7 @@ function setup() {
     option3 = ["Hmmmm... I should look at the..."];
     option4 = ["1) Open the window", "2) Check my phone"];
     option5 = ["1) Listen to the voicemail", "2) Open the windows",
-  "1) Read the messages", "2) No, I need to escape now", "1) Escape now", "2) Open the windows"];
+  "1) Read the messages", "2) No, I need to escape now", "1) Open the windows", "2) Escape now"];
     option6 = ["1) Shoot immediately", "2) Wait and see"];
     option7 = ["1) She's dangerous, shoot her now.", "2) Take her with you."];
 
@@ -309,6 +313,12 @@ function draw() {
       }
     } else if (scene == "escape") {
       background(tunnel);
+
+      if (scriptCount >= 47) {
+        notification(windowWidth/3, windowHeight/6, "someone help surrounded by zombies in district etn please i just neeofjasdlif", 2);
+        notification(windowWidth/2, windowHeight/3, "if ur in district etn gET OUT NOW RUN", 2);
+      }
+
     } else if (scene == "wait") {
       if (scriptCount - 52 > 1) {
         background(woman);
@@ -336,6 +346,7 @@ function draw() {
     text(scene, 10, textSize1*6);
     text(mouseX, 10, textSize1*7);
     text(mouseY, 10, textSize1*8);
+    text(readMessages, 10, textSize1*9);
 
     fill("#ffffff");
     strokeWeight(5);
@@ -370,7 +381,12 @@ function draw() {
       a = false;
     }
     else if (scene == "voicemail" && scriptCount > 37 && a) {
+      if (readMessages) {
+        scene = "deathScene2";
+        scriptCount-=10;
+      } else {
       scene = "messages";
+    }
     } else if (scene == "voicemail" && scriptCount > 37 && b) {
       scene = "escape";
       b = false;
@@ -514,6 +530,8 @@ function draw() {
       text(mouseY, 30, 60);
       text(scene, 30, 90);
 
+     readMessages = true;
+
       if (mouseX >= windowWidth*3/8+windowWidth/38.35 && mouseX <= ((windowWidth*3/8+windowWidth/38.35)+windowWidth/4*0.8)
     && mouseY >= windowHeight*3/20+windowHeight/6.1 && mouseY <= (windowHeight*3/20+windowHeight/6.10)+windowHeight/10*0.8) {
       scene = "messages";
@@ -524,8 +542,13 @@ function draw() {
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
   if (scriptCount - 29 == voicemail.length) {
     text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    if (readMessages) {
+    text(option5[4], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
+    text(option5[5], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
+  } else {
     text(option5[2], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
     text(option5[3], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
+  }
   } else {
     text(voicemail[scriptCount-29], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
   }
@@ -554,9 +577,11 @@ if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
 }
 
 } else if (scene == "escape" && scriptCount-38 <= escape.length) {
+
   if (scriptCount - 38 == escape.length) {
     text(option6[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     text(option6[1], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
+
   } else {
   text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
@@ -619,7 +644,7 @@ function keyPressed() {
     // TODO: need to include total length later
     if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
     scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
-  scriptCount != 62 && scriptCount != 73 && scriptCount != 21) {
+  scriptCount != 62 && scriptCount != 73 && scriptCount != 21 && scriptCount != 10) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
