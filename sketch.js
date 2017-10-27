@@ -24,7 +24,7 @@ var goodEnding;
 var badEnding;
 
 var deathScene1;
-var deathScene2;
+var flight;
 var deathScene3;
 
 var script;
@@ -201,7 +201,7 @@ function setup() {
 "The military forcibly seized the “fluff” microbots this morning and implemented stage 2 testing.",
 "You need to escape. Now.",
 "There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.",
-"We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a windowHeight/7.32m radius.",
+"We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 200 m radius.",
 "Bring a weapon. The Echo360 is at tunnel’s entrance."];
    escape = ["As an expert, Dr. Sorek sounds far more trustworthy than “Honeybunny” or President Tater’s propaganda. I guess I better take my chances.",
  "Hurrying downstairs, I notice a strange contraption hanging by the door.",
@@ -251,7 +251,9 @@ badEnding = ["“GUYS SDASLDFJASDLF PRESIDENT DICK TATER IS LYING SAVE YOURSELVE
 "The comments kept coming, and coming, and coming… until one day, they just didn’t.",
 "It was then we realised that there was no one left to write them.",
 "We were the only survivors left in Canberra.",
-"We were completely alone."];
+"We were completely alone.",
+"Years passed by, and the pain and loneliness wore down on me.",
+"I died of a broken heart."];
 
 deathScene1 = ["Now, a reasonable person would probably try to pinpoint their surroundings or figure out exactly what’s going on.",
 "BUT, “reasonableness” is overrated and this blanket’s fluffiness level is absolutely heavenly.",
@@ -264,7 +266,7 @@ deathScene1 = ["Now, a reasonable person would probably try to pinpoint their su
 "Out...",
 "...In"]; // never wake up
 
-deathScene2 = ["Well, I guess I better do what the authorities have told me. What could possibly go wrong?",
+flight = ["Well, I guess I better do what the authorities have told me. What could possibly go wrong?",
 "I open the window, taking a deep breath of fresh air.",
 "Then I see them, glittering in the air like floating specks of sand. Millions, billions, trillions, of tiny fluff microbots.",
 "I swallow. Something doesn’t feel quite right.",
@@ -361,6 +363,7 @@ function draw() {
     } else if (scene == "voicemail") {
       background(phoneCall);
     } else if (scene == "escape" && scriptCount - 38 <= 4) {
+      dialling.stop();
       if (!shotgun.isPlaying()) {
         shotgun.play();
       }
@@ -372,10 +375,6 @@ function draw() {
       background(tunnel);
 
       if (scriptCount >= 47) {
-        if (textPlay == 1) {
-          textAlert.play();
-          textPlay++;
-        }
 
         if (!shotgun.isPlaying()) {
           shotgun.play();
@@ -385,9 +384,6 @@ function draw() {
       }
 
     } else if (scene == "wait") {
-      if (!shotgun.isPlaying()) {
-        shotgun.play();
-      }
       if (scriptCount - 52 > 1) {
         background(woman);
       } else {
@@ -414,13 +410,13 @@ function draw() {
       background(boxer);
     }
   } else if (scene == "goodEnding") {
-    if (scriptCount-73 == 0) {
+    if (scriptCount-74 == 0) {
       if (newsPlay == 1) {
         newsIntro.play();
         newsPlay++;
       }
       background(reporter);
-    } else if (scriptCount-73 == 1) {
+    } else if (scriptCount-74 == 1) {
       background(report);
     } else {
       background(happy);
@@ -477,6 +473,7 @@ function draw() {
       if (readMessages) {
         scene = "deathScene2";
         scriptCount-=10;
+        a = false;
       } else {
       scene = "messages";
     }
@@ -603,8 +600,9 @@ function draw() {
         text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
-      }
+      } else {
       text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+    }
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
       if (scriptCount - 17 == scene3.length-1) {
         text(scene3[scriptCount-17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -641,6 +639,7 @@ function draw() {
     }
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
   if (dialCount == 0) {
+    silence();
     dialling.play();
     dialCount++;
   }
@@ -660,6 +659,7 @@ function draw() {
 else if (scene == "messages") {
   background("#ffd1e5");
   if (textPlay == 0) {
+    silence();
     textAlert.play();
     textPlay++;
   }
@@ -683,8 +683,9 @@ if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
 && mouseY >=  windowHeight/36.7+textSize1*5 && mouseY <=  windowHeight/36.7+textSize1*5+windowHeight/10*0.8) {
   scene = "deathScene2";
 }
-
-} else if (scene == "escape" && scriptCount-38 <= escape.length) {
+}  else if (scene == "deathScene2" && scriptCount - 29 < deathScene2.length) {
+  text(deathScene2[scriptCount - 29], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+}  else if (scene == "escape" && scriptCount-38 <= escape.length) {
 
   if (scriptCount - 38 == escape.length) {
     text(option6[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -742,21 +743,26 @@ if (scriptCount - 63 == takeHer.length - 1) {
   } else {
   text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
-} else if (scene == "goodEnding" && scriptCount-73 < goodEnding.length) {
-  text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
-} else if (scene == "deathScene2" && scriptCount - 28 < deathScene2.length) {
-  text(deathScene2[scriptCount - 28], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+} else if (scene == "goodEnding" && scriptCount-74 < goodEnding.length) {
+  text(goodEnding[scriptCount - 74], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 } else if (scene == "badEnding" && scriptCount-73 < badEnding.length) {
     text(badEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
  else if (scene == "1b" && scriptCount-4 >= scene1a.length
  || scene == "deathScene2" && scriptCount - 28 >= deathScene2.length
-|| scene == "deathScene3" && scriptCount - 51 >= deathScene3.length) {
+|| scene == "deathScene3" && scriptCount - 51 >= deathScene3.length
+|| scene == "badEnding" && scriptCount - 73 >= badEnding.length) {
+      silence();
       background(0,0,0);
       fill("#ffffff");
       text("Unfortunately, you have died.", windowWidth/2-windowHeight/7.32, windowHeight/2);
-      text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
+      text("Be careful who you listen to - words can kill.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
+      text("Press 'r' for a second chance.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1*2);
     } else {
+      silence();
+      if(!flight.isPlaying) {
+        flight.play();
+      }
       background("#ffffff");
       text("Congratulations! You have completed the game.", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
@@ -768,10 +774,15 @@ if (scriptCount - 63 == takeHer.length - 1) {
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
     // TODO: need to include total length later
-    if (readReport) {
+    if (scene == "1b" || scene == "deathScene2") {
+      moveToNext = true;
+      scriptCount++;
+      moveToNext = false;
+    }else if (readReport) {
       if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
       scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
-    scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 67)  {
+    scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 67
+  && scriptCount != 7)  {
       moveToNext = true;
       scriptCount++;
       moveToNext = false;
@@ -779,7 +790,8 @@ function keyPressed() {
   } else {
     if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
     scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
-  scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 21 && scriptCount != 67) {
+  scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 21 && scriptCount != 67
+&& scriptCount != 7) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
@@ -811,7 +823,7 @@ function keyTyped() {
   if (key == 'r') {
     window.location.reload();
   }
-  if (key == 'h') {
+  if (key == 'h' && scriptCount == 7 || scriptCount == 67) {
     if (hit < 10) {
         punch.play();
       hit++;
@@ -848,4 +860,12 @@ function notification(x, y, textMsg, height) {
   strokeWeight(5);
   textSize(textSize1);
 
+}
+
+function silence() {
+  gunshot.stop();
+  dialling.stop();
+  shotgun.stop();
+  flight.stop();
+  newsIntro.stop();
 }
