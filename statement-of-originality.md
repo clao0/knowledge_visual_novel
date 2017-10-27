@@ -115,3 +115,23 @@ Attribution 3.0
 News Sound effect by Maximilien on soundbible
 http://soundbible.com/2041-News-Intro.html
 Attribution 3.0
+
+Punch sfx by Mark DiAngelo
+http://soundbible.com/2069-Realistic-Punch.html
+
+Gunshot sfx by GoodSoundForYou
+http://soundbible.com/1998-Gun-Fire.html
+
+Phone dialing sfx by KevanGC on soundbible
+http://soundbible.com/1560-Phone-Dialing-With-Dialtone.html
+
+Background Music
+
+Momentum by Yaver Clap/FreeBackgroundMusic on Soundcloud
+https://soundcloud.com/freebmusic/yaver-clap-momentum-freebackgroundmusic
+
+Shotgun (Original mix) by Marik/FreeBackgroundMusic on soundcloud
+https://soundcloud.com/freebmusic/shotgun-original-mix-free-background-music-no-copyright-music
+
+Flight by Jonas/FreeBackgroundMusic on soundcloud
+https://soundcloud.com/freebmusic/jonas-flight-freebackgroundmusic

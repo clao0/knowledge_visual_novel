@@ -129,9 +129,24 @@ var textAlert;
 var newsPlay;
 var textPlay;
 
+var shotgun;
+var flight;
+
+var punch;
+var shotgun;
+var dialling;
+
+var dialCount;
+
 function preload() {
   newsIntro = loadSound("assets/newsIntro.mp3");
   textAlert = loadSound("assets/textAlert.mp3");
+  shotgun = loadSound("assets/shotgun.mp3");
+  punch = loadSound("assets/punch.mp3");
+  shotgun = loadSound("assets/shotgun.mp3");
+  flight = loadSound("assets/flight.mp3");
+  dialling = loadSound("assets/dial.wav");
+  gunshot = loadSound("assets/gunfire.mp3")
 }
 
 function setup() {
@@ -139,6 +154,7 @@ function setup() {
     // any additional setup code goes here
 
     hit = 0;
+    dialCount = 0;
 
    frameRate(300);
 
@@ -345,6 +361,9 @@ function draw() {
     } else if (scene == "voicemail") {
       background(phoneCall);
     } else if (scene == "escape" && scriptCount - 38 <= 4) {
+      if (!shotgun.isPlaying()) {
+        shotgun.play();
+      }
       background(basement);
       if (scriptCount - 38 >= 2 && scriptCount - 38 <= 4) {
         image(echo360, windowWidth/3, windowHeight/3, windowWidth/3, windowHeight/4);
@@ -357,23 +376,34 @@ function draw() {
           textAlert.play();
           textPlay++;
         }
+
+        if (!shotgun.isPlaying()) {
+          shotgun.play();
+        }
         notification(windowWidth/6, windowHeight/6, "someone help surrounded by zombies in district etn please i just neeofjasdlif", 2);
         notification(windowWidth/2, windowHeight/3, "if ur in district etn gET OUT NOW RUN", 2);
       }
 
     } else if (scene == "wait") {
+      if (!shotgun.isPlaying()) {
+        shotgun.play();
+      }
       if (scriptCount - 52 > 1) {
         background(woman);
       } else {
         background(tunnel);
       }
     } else if (scene == "take") {
+      if (!shotgun.isPlaying()) {
+        shotgun.play();
+      }
       if (scriptCount - 63 == takeHer.length-1) {
         background(door);
       } else {
       background(tunnel);
     }
   } else if (scene == "ending") {
+    shotgun.stop();
     background(lab);
   } else if (scene == "deathScene2") {
     background(cityView);
@@ -528,6 +558,9 @@ function draw() {
        }
     } else if (scene == 2 && scriptCount-7 < scene2a.length) {
       if (stairsStatus == "alive") {
+        if (!shotgun.isPlaying()) {
+          shotgun.play();
+        }
         if (hit < 10) {
           fill("#1DFF83");
           rect(windowWidth-windowWidth/6.136, windowWidth/76.6, windowWidth/7.67, windowWidth/76.6);
@@ -536,6 +569,7 @@ function draw() {
           text(scene2a[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
           scriptCount = 7;
         } else {
+          shotgun.stop();
           stairsStatus = "dead";
           scriptCount++;
           text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -606,6 +640,10 @@ function draw() {
       scene = "voicemail";
     }
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
+  if (dialCount == 0) {
+    dialling.play();
+    dialCount++;
+  }
   if (scriptCount - 29 == voicemail.length) {
     text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     if (readMessages) {
@@ -663,6 +701,7 @@ image(target, mouseX, mouseY, windowWidth/15.34, windowHeight/7.34);
 
   if (mouseX >= windowWidth/3 && mouseX <= windowWidth*2/3
      && mouseY >= windowHeight/3 && mouseY <= windowHeight*2/3) {
+       gunshot.play();
        scene = "deathScene3";
      }
 } else if (scene == "deathScene3" && scriptCount - 51 < deathScene3.length) {
@@ -774,6 +813,7 @@ function keyTyped() {
   }
   if (key == 'h') {
     if (hit < 10) {
+        punch.play();
       hit++;
     } else {
       hit = 10;
