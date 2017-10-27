@@ -5,10 +5,22 @@ project is entirely my own work, with the following exceptions:
 
 ## Inspiration
 
+I was inspired by visual novels, particularly those with unexpected twists
+such as the game 'Hatoful Boyfriend' which initially appeared to be a dating
+sim involving pigeons but turned out to be a murder mystery involving
+biological warfare and government conspiracies.
+
+The quote from President Dick Tater was adapted from a similar quote
+by North Korean dictator, Kim Jong Un.
+https://www.brainyquote.com/quotes/quotes/k/kimjongun819361.html
+
 ## Code
 
-## Assets
+All code is original with the exception of the reset function with was taken
+from the page below:
+https://stackoverflow.com/questions/5294842/refresh-a-page-using-javascript-or-html
 
+## Assets
 Office image by MagicDesk on Pixabay
 https://pixabay.com/en/office-sitting-room-executive-730681/
 CC0 Creative Commons (licence found in link above)
