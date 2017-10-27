@@ -115,6 +115,7 @@ var voicemail;
 
 // tracks whether you've read the messages or not
 var readMessages;
+var readReport;
 
 // image for weapon
 var echo360;
@@ -122,6 +123,16 @@ var echo360;
 var happy;
 var socialMedia;
 
+var newsIntro;
+var textAlert;
+
+var newsPlay;
+var textPlay;
+
+function preload() {
+  newsIntro = loadSound("assets/newsIntro.mp3");
+  textAlert = loadSound("assets/textAlert.mp3");
+}
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -256,6 +267,9 @@ deathScene3 = ["“Take that!” I scream as I fire all the shots of the Echo360
 "Suddenly, a flood of memories hit me - Honeybunny is no ordinary woman, she’s a 10-time MMA world champion.",
 "I gulp."]; // shoot Honeybunny
 
+
+    newsPlay = 0;
+    textPlay = 0;
     scriptCount = 0;
     txtScreenH = windowHeight/3.66;
     txtMargin = txtScreenH/10;
@@ -269,7 +283,7 @@ deathScene3 = ["“Take that!” I scream as I fire all the shots of the Echo360
     phone = loadImage("assets/phone.png");
     weird = loadImage("assets/trippy.jpg");
     phoneBackground = loadImage("assets/phonebkg.jpg");
-    phoneCall = loadImage("assets/phoneCall.png");
+    phoneCall = loadImage("assets/phoneCall.jpg");
     tunnel = loadImage("assets/tunnel.jpg");
     basement = loadImage("assets/basement.jpg");
     echo360 = loadImage("assets/echo360.jpg");
@@ -282,10 +296,12 @@ deathScene3 = ["“Take that!” I scream as I fire all the shots of the Echo360
     target = loadImage("assets/target.png");
     boxer = loadImage("assets/boxer.jpg");
     socialMedia = loadImage("assets/socialMedia.jpg");
-    happy = loadImage("assets/happy.png");
+    happy = loadImage("assets/happy.jpg");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
+
+    readReport = false;
 
 
     backgroundName = ["#ffffff", bedroom, corridor, office];
@@ -319,6 +335,10 @@ function draw() {
     } else if (scene == "labreport" && scriptCount <= 16) {
       background(report);
     } else if (scene == "news" || scene == "labreport") {
+      if(newsPlay == 0) {
+        newsIntro.play();
+        newsPlay++;
+      }
       background(reporter);
     } else if (scene == 3 || scene == 3.1) {
       background(weird);
@@ -333,6 +353,10 @@ function draw() {
       background(tunnel);
 
       if (scriptCount >= 47) {
+        if (textPlay == 1) {
+          textAlert.play();
+          textPlay++;
+        }
         notification(windowWidth/6, windowHeight/6, "someone help surrounded by zombies in district etn please i just neeofjasdlif", 2);
         notification(windowWidth/2, windowHeight/3, "if ur in district etn gET OUT NOW RUN", 2);
       }
@@ -361,6 +385,10 @@ function draw() {
     }
   } else if (scene == "goodEnding") {
     if (scriptCount-73 == 0) {
+      if (newsPlay == 1) {
+        newsIntro.play();
+        newsPlay++;
+      }
       background(reporter);
     } else if (scriptCount-73 == 1) {
       background(report);
@@ -455,21 +483,16 @@ function draw() {
       text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scriptCount == scene1.length+scene1a.length+1 && scene == "1a") {
       // go upstairs and downstairs option
-      image(stairs, 0, 0, windowWidth/3, windowHeight);
-      image(corridor, windowWidth*2/3, 0, windowWidth/3, windowHeight);
+      image(stairs, 0, 0, windowWidth/2, windowHeight);
 
-     if (mouseX < windowWidth/3 && mouseY < windowHeight-txtScreenH) {
-       image(stairs, 0, 0, windowWidth/3+frameCount*10%windowWidth*2/3, windowHeight);
-       if (frameCount*10 > windowWidth*2/3) {
+
+     if (mouseX < windowWidth/2 && mouseY < windowHeight-txtScreenH) {
+       image(stairs, 0, 0, windowWidth/2+frameCount*10%windowWidth/2, windowHeight);
+       if (frameCount*10 > windowWidth/2) {
          scene = 2;
        }
-     } else if (mouseX > windowWidth*2/3 && mouseY < windowHeight-txtScreenH){
-       image(corridor, windowWidth*2/3 - frameCount*10%600, 0, windowWidth*2/3+frameCount*10%windowWidth*2/3, windowHeight);
-       goDownstairs = true;
-       if (frameCount*10 > windowWidth*2/3) {
-         scene = "2b";
-       }
      }
+
 
       fill("#ffffff");
       strokeWeight(5);
@@ -533,6 +556,7 @@ function draw() {
       }
     } else if (scene == "labreport" && scriptCount <= 16) {
       // sets labreport scene
+      readReport = true;
       text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "labreport" && scriptCount < 24) {
       text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -597,6 +621,10 @@ function draw() {
 }
 else if (scene == "messages") {
   background("#ffd1e5");
+  if (textPlay == 0) {
+    textAlert.play();
+    textPlay++;
+  }
   image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
   fill("#d2f5f7");
     image(phoneBackground, windowWidth*3/8+windowWidth/51.13, windowHeight/20+windowHeight/7.32, windowWidth/4-windowWidth/30.68, windowHeight*9/10-windowHeight/3.66);
@@ -682,14 +710,16 @@ if (scriptCount - 63 == takeHer.length - 1) {
 } else if (scene == "badEnding" && scriptCount-73 < badEnding.length) {
     text(badEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
- else if (scene == "1b" && scriptCount-4 >= scene1a.length || scene == "deathScene2" && scriptCount - 28 >= deathScene2.length) {
+ else if (scene == "1b" && scriptCount-4 >= scene1a.length
+ || scene == "deathScene2" && scriptCount - 28 >= deathScene2.length
+|| scene == "deathScene3" && scriptCount - 51 >= deathScene3.length) {
       background(0,0,0);
       fill("#ffffff");
       text("Unfortunately, you have died.", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     } else {
       background("#ffffff");
-      text("Game Over", windowWidth/2-windowHeight/7.32, windowHeight/2);
+      text("Congratulations! You have completed the game.", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Press 'r' to reset game.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     }
 }
@@ -699,13 +729,25 @@ if (scriptCount - 63 == takeHer.length - 1) {
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
     // TODO: need to include total length later
+    if (readReport) {
+      if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
+      scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
+    scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 67)  {
+      moveToNext = true;
+      scriptCount++;
+      moveToNext = false;
+    }
+  } else {
     if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
     scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
-  scriptCount != 62 && scriptCount != 73 && scriptCount != 21 && scriptCount != 10) {
+  scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 21 && scriptCount != 67) {
     moveToNext = true;
     scriptCount++;
     moveToNext = false;
+
+
   }
+}
   }
 
 

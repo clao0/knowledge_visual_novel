@@ -100,8 +100,18 @@ CC0 Creative Commons (licence found in link above)
 Boxer image by golfwonnow on Pixabay
 https://pixabay.com/en/boxer-women-boxing-sport-woman-2758887/
 
-Happy ending image by GDJ on Pixabay
-https://pixabay.com/en/electrocardiogram-blood-pressure-ekg-2858693/
+Happy ending image by biancamentil on Pixabay
+https://pixabay.com/en/heart-herzchen-love-romance-luck-1192662/
 
 Bad ending image by geralt on Pixabay
 https://pixabay.com/en/social-media-digitization-faces-2528410/
+
+Sound effects
+
+Text Message alert by Daniel Simion on soundbible
+http://soundbible.com/2156-Text-Message-Alert-3.html
+Attribution 3.0
+
+News Sound effect by Maximilien on soundbible
+http://soundbible.com/2041-News-Intro.html
+Attribution 3.0
