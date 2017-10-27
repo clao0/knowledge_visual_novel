@@ -155,9 +155,9 @@ function setup() {
     stairsStatus = "alive";
     doorStatus = "alive";
 
-    // sets screen up
-        txtScreenH = windowHeight/3.66;
-        txtMargin = txtScreenH/10;
+  // sets screen up
+    txtScreenH = windowHeight/3.66;
+    txtMargin = txtScreenH/10;
     textLoc = [txtMargin*2.25, windowHeight-txtScreenH+txtMargin*2];
     scene = 1;
 
@@ -167,7 +167,7 @@ function setup() {
 // scripts for each scene + option
 
 // waking up
-    scene1 = ["...", ".......", "Where am I?"];
+    scene1 = ["... (Press the right arrow to proceed)", ".......", "Where am I?"];
     scene1a = ["What happened last night?",
 "I try to recall details - anything, a date, a person, how plates of hash browns I had for breakfast - but it’s hard to concentrate when you feel like you’ve been attacked by a particularly vengeful horde of bricks.",
 "Ouch… did I get mugged or something?"];
@@ -182,7 +182,8 @@ function setup() {
 "I need to do something, I should..."];
 
 // options
-    option1 = ["1) Try and recall what happened last night.", "2) Who cares? Go back to sleep."];
+    option1 = ["1) Try and recall what happened last night. (Press the up arrow to select)",
+    "2) Who cares? Go back to sleep. (Press the down arrow to select)"];
     option2 = ["Whatever, I guess I should probably look around."];
     option3 = ["Hmmmm... I should look at the..."];
     option4 = ["1) Open the window", "2) Check my phone"];
