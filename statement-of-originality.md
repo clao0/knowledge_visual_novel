@@ -96,3 +96,12 @@ CC0 Creative Commons (licence found in link above)
 CityView image by melissamahon on Pixabay
 https://pixabay.com/en/new-york-buildings-tall-top-view-472392/
 CC0 Creative Commons (licence found in link above)
+
+Boxer image by golfwonnow on Pixabay
+https://pixabay.com/en/boxer-women-boxing-sport-woman-2758887/
+
+Happy ending image by GDJ on Pixabay
+https://pixabay.com/en/electrocardiogram-blood-pressure-ekg-2858693/
+
+Bad ending image by geralt on Pixabay
+https://pixabay.com/en/social-media-digitization-faces-2528410/

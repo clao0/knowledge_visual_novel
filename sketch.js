@@ -56,11 +56,13 @@ var woman;
 var door;
 var lab;
 var cityView;
+var boxer;
 
 // images for sfx
 var splinters;
 var blood;
-
+var shadow;
+var target;
 // images for clicking
 var drawers;
 var remote;
@@ -116,6 +118,9 @@ var readMessages;
 
 // image for weapon
 var echo360;
+
+var happy;
+var socialMedia;
 
 
 function setup() {
@@ -241,7 +246,15 @@ deathScene2 = ["Well, I guess I better do what the authorities have told me. Wha
 "Spluttering, choking, gasping, I fall to the floor.",
 "“I can’t believe Mindy Leslie just mindlessly lied to me.”",
 "I die."]; // open the windows
-deathScene3 = []; // shoot Honeybunny
+
+deathScene3 = ["“Take that!” I scream as I fire all the shots of the Echo360 at the zombie.",
+"Hmmmm I suppose I better inspect it to make sure it’s dead. Better safe than sorry.",
+"!!!", "No, I’ve made a terrible mistake! This isn’t a zombie… it’s Honeybunny!",
+"“Scrood, you paTHETIC PIECE OF DONKEY CURD!! WE DATE FOR 5 YEARS AND YOU mURDER ME IN COLD BLOOD ON OUR ANNIVERSARY???!!!”",
+"“WELL, IF I’M GOING TO DIE I’M TAKING YOU WITH ME!!”",
+"I watch in horror as Honeybunny pulls herself up from the ground, blood-soaked knuckles clenching into fists.",
+"Suddenly, a flood of memories hit me - Honeybunny is no ordinary woman, she’s a 10-time MMA world champion.",
+"I gulp."]; // shoot Honeybunny
 
     scriptCount = 0;
     txtScreenH = windowHeight/3.66;
@@ -256,7 +269,7 @@ deathScene3 = []; // shoot Honeybunny
     phone = loadImage("assets/phone.png");
     weird = loadImage("assets/trippy.jpg");
     phoneBackground = loadImage("assets/phonebkg.jpg");
-    phoneCall = loadImage("assets/phoneCall.jpg");
+    phoneCall = loadImage("assets/phoneCall.png");
     tunnel = loadImage("assets/tunnel.jpg");
     basement = loadImage("assets/basement.jpg");
     echo360 = loadImage("assets/echo360.jpg");
@@ -265,6 +278,11 @@ deathScene3 = []; // shoot Honeybunny
     splinters = loadImage("assets/splinters.png");
     lab = loadImage("assets/lab.jpg");
     cityView = loadImage("assets/cityView.jpg");
+    shadow = loadImage("assets/shadow.png");
+    target = loadImage("assets/target.png");
+    boxer = loadImage("assets/boxer.jpg");
+    socialMedia = loadImage("assets/socialMedia.jpg");
+    happy = loadImage("assets/happy.png");
 
     drawers = loadImage("assets/drawers.jpg");
     remote = loadImage("assets/remote.png");
@@ -315,7 +333,7 @@ function draw() {
       background(tunnel);
 
       if (scriptCount >= 47) {
-        notification(windowWidth/3, windowHeight/6, "someone help surrounded by zombies in district etn please i just neeofjasdlif", 2);
+        notification(windowWidth/6, windowHeight/6, "someone help surrounded by zombies in district etn please i just neeofjasdlif", 2);
         notification(windowWidth/2, windowHeight/3, "if ur in district etn gET OUT NOW RUN", 2);
       }
 
@@ -335,6 +353,23 @@ function draw() {
     background(lab);
   } else if (scene == "deathScene2") {
     background(cityView);
+  } else if (scene == "deathScene3") {
+    if (scriptCount - 51 <= 1) {
+      background(tunnel);
+    } else {
+      background(boxer);
+    }
+  } else if (scene == "goodEnding") {
+    if (scriptCount-73 == 0) {
+      background(reporter);
+    } else if (scriptCount-73 == 1) {
+      background(report);
+    } else {
+      background(happy);
+    }
+  }
+  else if (scene == "badEnding") {
+    background(socialMedia);
   }
 
     fill(0,0,0);
@@ -393,10 +428,17 @@ function draw() {
     } else if (scene == "escape" && scriptCount > 51 && b) {
       scene = "wait";
       b = false;
+    } else if (scene == "escape" && scriptCount > 51 && a) {
+      scene = "shoot";
+      a = false;
     } else if (scene == "wait" && scriptCount > 62 && b) {
       scene = "take";
       b = false;
-    } else if (scene == "ending" && scriptCount >= 68+ending.length && a) {
+    } else if (scene == "wait" && scriptCount > 62 && a) {
+      scene = "shoot";
+      scriptCount-=8;
+      a = false;
+    }else if (scene == "ending" && scriptCount >= 68+ending.length && a) {
       scene = "goodEnding";
       a = false;
     } else if (scene == "ending" && scriptCount >= 68+ending.length && b) {
@@ -585,7 +627,20 @@ if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
   } else {
   text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
-} else if (scene == "wait" && scriptCount - 52 <= wait.length) {
+} else if (scene == "shoot") {
+  background(tunnel);
+  image(shadow, windowWidth/3, windowHeight/3, windowWidth/3, windowHeight/3);
+
+image(target, mouseX, mouseY, windowWidth/15.34, windowHeight/7.34);
+
+  if (mouseX >= windowWidth/3 && mouseX <= windowWidth*2/3
+     && mouseY >= windowHeight/3 && mouseY <= windowHeight*2/3) {
+       scene = "deathScene3";
+     }
+} else if (scene == "deathScene3" && scriptCount - 51 < deathScene3.length) {
+  text(deathScene3[scriptCount - 51], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+}
+else if (scene == "wait" && scriptCount - 52 <= wait.length) {
   if (scriptCount - 52 == wait.length) {
     text(option7[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     text(option7[1], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -624,6 +679,8 @@ if (scriptCount - 63 == takeHer.length - 1) {
   text(goodEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 } else if (scene == "deathScene2" && scriptCount - 28 < deathScene2.length) {
   text(deathScene2[scriptCount - 28], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+} else if (scene == "badEnding" && scriptCount-73 < badEnding.length) {
+    text(badEnding[scriptCount - 73], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
  else if (scene == "1b" && scriptCount-4 >= scene1a.length || scene == "deathScene2" && scriptCount - 28 >= deathScene2.length) {
       background(0,0,0);
