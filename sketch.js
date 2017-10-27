@@ -122,7 +122,7 @@ var textPlay;
 // counts how many times dialtone has rung
 var dialCount;
 
-// preloading sound
+// set up sound
 function preload() {
   newsIntro = loadSound("assets/newsIntro.mp3");
   textAlert = loadSound("assets/textAlert.mp3");
@@ -137,48 +137,72 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
-// initalise vars
     hit = 0;
     dialCount = 0;
-    newsPlay = 0;
-    textPlay = 0;
-    scriptCount = 0;
+
+
+            textLoc = [txtMargin*2.25, windowHeight-txtScreenH+txtMargin*2];
+            a = false;
+            b = false;
+            scene = 1;
+            
+        newsPlay = 0;
+        textPlay = 0;
+        scriptCount = 0;
+        txtScreenH = windowHeight/3.66;
+        txtMargin = txtScreenH/10;
+        border = loadImage("assets/border.png");
+        bedroom = loadImage("assets/bed3.jpg");
+        corridor = loadImage("assets/corridor.jpg");
+        office = loadImage("assets/office.jpg");
+        stairs = loadImage("assets/stairs.jpg");
+        report = loadImage("assets/labreport.jpg");
+        reporter = loadImage("assets/reporter.jpg")
+        phone = loadImage("assets/phone.png");
+        weird = loadImage("assets/trippy.jpg");
+        phoneBackground = loadImage("assets/phonebkg.jpg");
+        phoneCall = loadImage("assets/phoneCall.jpg");
+        tunnel = loadImage("assets/tunnel.jpg");
+        basement = loadImage("assets/basement.jpg");
+        echo360 = loadImage("assets/echo360.jpg");
+        woman = loadImage("assets/woman.jpg");
+        door = loadImage("assets/door.jpg");
+        splinters = loadImage("assets/splinters.png");
+        lab = loadImage("assets/lab.jpg");
+        cityView = loadImage("assets/cityView.jpg");
+        shadow = loadImage("assets/shadow.png");
+        target = loadImage("assets/target.png");
+        boxer = loadImage("assets/boxer.jpg");
+        socialMedia = loadImage("assets/socialMedia.jpg");
+        happy = loadImage("assets/happy.jpg");
+
+        drawers = loadImage("assets/drawers.jpg");
+        remote = loadImage("assets/remote.png");
+
+        readReport = false;
+
+        stairsStatus = "alive";
+        doorStatus = "alive";
+
+        poiret = loadFont("assets/PoiretOne-Regular.ttf");
+        textSize1 = windowHeight/36.6;
 
    frameRate(300);
 
     readMessages = false;
-    readReport = false;
     moveToNext = false;
-    a = false;
-    b = false;
+    moveBackwards = false;
 
-    stairsStatus = "alive";
-    doorStatus = "alive";
-
-    textLoc = [txtMargin*2.25, windowHeight-txtScreenH+txtMargin*2];
-    scene = 1;
-
-    poiret = loadFont("assets/PoiretOne-Regular.ttf");
-    textSize1 = windowHeight/36.6;
-
-// scripts for each scene + option
-
-// waking up
+    // scripts for scenes
     scene1 = ["...", ".......", "Where am I?"];
     scene1a = ["What happened last night?",
 "I try to recall details - anything, a date, a person, how plates of hash browns I had for breakfast - but it’s hard to concentrate when you feel like you’ve been attacked by a particularly vengeful horde of bricks.",
 "Ouch… did I get mugged or something?"];
-
-// battle with stairs
     scene2a = ["Defeat the THE STAIRS™! (Press 'H' to attack)", "asdlgjaskdgjaskldfjaskldfjasd fiNALLY!!!",
   "After what seems like an infinity, I enter what appears to be an immaculately organised office."];
-
-// remember identity
     scene3 = ["Hmmm…. Dr. I.M. Scrood… there’s something about that name",
   "!!!!", "Wait… that’s my name!", "Yesterday… what on earth happened yesterday?",
 "I need to do something, I should..."];
-
-// options
     option1 = ["1) Try and recall what happened last night.", "2) Who cares? Go back to sleep."];
     option2 = ["Whatever, I guess I should probably look around."];
     option3 = ["Hmmmm... I should look at the..."];
@@ -187,10 +211,7 @@ function setup() {
   "1) Read the messages", "2) No, I need to escape now", "1) Open the windows", "2) Escape now"];
     option6 = ["1) Shoot immediately", "2) Wait and see"];
     option7 = ["1) She's dangerous, shoot her now.", "2) Take her with you."];
-    option8 = ["Dr. Sorek turned to me. 'Dr. Scrood, what do you think we should do?'",
-     "1) Hack into FML news and broadcast the info", "2) Make a Bookface post - it can't wait!"];
 
-// scripts for various media
     labReport = ["There appears to be a document of some kind.", "Examinitis treatment: Stage 1 observations",
   "Subjects seemed to have recovered from initial symptoms. Respiratory and heart rates have stabilised.",
 "Certain subjects have begun to exhibit strange symptoms such as foaming at the mouth, biting other subjects and sporadic violent tendencies. At 17:20 Subject 666 reportedly attempted to cannibalise other subjects.",
@@ -215,8 +236,6 @@ function setup() {
 "There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.",
 "We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 200 m radius.",
 "Bring a weapon. The Echo360 is at tunnel’s entrance."];
-
-// escape scene
    escape = ["As an expert, Dr. Sorek sounds far more trustworthy than “Honeybunny” or President Tater’s propaganda. I guess I better take my chances.",
  "Hurrying downstairs, I notice a strange contraption hanging by the door.",
 "Hmmm…. I supposed this must be the Echo360? I pick it up.",
@@ -229,7 +248,6 @@ function setup() {
 "District ETN? Hang on, that's where I am.",
 "I freeze. There’s the sound of footsteps approaching.",
 "Wait… that couldn’t be a... could it?"];
-// what happens if you don't shoot Honeybunny
 wait = ["I decide to bide my time and wait - it’s always better to be safe than sorry.",
 "As the figure approaches, I realise it’s not so foreign after all.",
 "'Snugglemuffin, is that you?''",
@@ -240,29 +258,25 @@ wait = ["I decide to bide my time and wait - it’s always better to be safe tha
 "I pause. 'Hang on... so you were outside? And inhaled the fluff?'",
 "'Yeah, totally. I didn't want to catch examinitis right?'",
 "How on earth can she still be ok? The effects of fluff are supposed to be immediate. What on earth...?"];
-// taking Honeybunny with you
 takeHer = ["I should probably take her with me to the lab - we’ll be able to properly examine her there.",
 "Besides if anything goes wrong I always have the Echo360 with me.",
 "'There's no time to talk - we need to get going now.'",
 "Hurrying along the tunnel, we make our way to the end... only to be confronted with a barricaded door.",
 "'Well... I guess we have no choice but the break it down. What a pity. Lovely door.' Honeybunny says, with a dangerous grin on her face."];
 
-// ending scene
 ending = ["At last, we entered the lab.",
 "Turns out they had barricaded the door after getting the Zone B alert, but evidently it had turned out to be a false alarm.",
 "After informing them of Honeybunny’s circumstances, we rushed her to the lab, to undergo extensive testing. Being apart for a grand total of 2 hours was excruciatingly painful, but I cried gushing waterfalls of tears for its entirety but I reminded myself it was for the good of mankind.",
 "When the results came back, we were absolutely shocked. Turns out her frequent consumption of energy drink “Blue Buffalo” had saved her.",
 "While “blue buffalo” was in one’s system, it rendered them immune to the nefarious effects of fluff."];
-
-// good ending script
+option8 = ["Dr. Sorek turned to me. 'Dr. Scrood, what do you think we should do?'",
+ "1) Hack into FML news and broadcast the info", "2) Make a Bookface post - it can't wait!"];
 goodEnding = ["“Live from FML news this is Mind-”",
 "“Hello fellow citizens. This is Dr. I. M. Scrood from the AHNO Medical school. I regret to inform you that there has been some misleading information regarding stage 2 testing…”",
 "After the broadcast, all hell broke loose. The civilians were outraged - how could they not when their very own President had lied to them, and attempted to slaughter his own people?",
 "People began sharing Blue Buffalo between their friends, their acquaintances and slowly by slowly, both the outbreak of fluff and examinitis began to recede.",
 "However, things did not go as planned for President Dick Tater.",
 "Outrage lead into protests, and protests eventually culminated in his impeachment… as well as a lifetime sentence of doing the laundry by hand for every civilian in the country."];
-
-// bad ending script
 badEnding = ["“GUYS SDASLDFJASDLF PRESIDENT DICK TATER IS LYING SAVE YOURSELVES DRINK BLUE BUFFALO!!1”",
 "Overcome by hysteria and emotion, our Bookface post didn’t really have the impact we intended, with the majority disregarding our message.",
 "‘An energy drink curing examinitis? Next you’re going to be claiming the earth is flat.’",
@@ -272,7 +286,6 @@ badEnding = ["“GUYS SDASLDFJASDLF PRESIDENT DICK TATER IS LYING SAVE YOURSELVE
 "We were the only survivors left in Canberra.",
 "We were completely alone."];
 
-// scripts for death scenes
 deathScene1 = ["Now, a reasonable person would probably try to pinpoint their surroundings or figure out exactly what’s going on.",
 "BUT, “reasonableness” is overrated and this blanket’s fluffiness level is absolutely heavenly.",
 "Also, it appears to be morning and only absolute freaks of nature willingly wake up before 3pm.",
@@ -303,40 +316,11 @@ deathScene3 = ["“Take that!” I scream as I fire all the shots of the Echo360
 "Suddenly, a flood of memories hit me - Honeybunny is no ordinary woman, she’s a 10-time MMA world champion.",
 "I gulp."]; // shoot Honeybunny
 
-// sets screen up
-    txtScreenH = windowHeight/3.66;
-    txtMargin = txtScreenH/10;
-
-    // images needed
-    bedroom = loadImage("assets/bed3.jpg");
-    office = loadImage("assets/office.jpg");
-    stairs = loadImage("assets/stairs.jpg");
-    report = loadImage("assets/labreport.jpg");
-    reporter = loadImage("assets/reporter.jpg")
-    phone = loadImage("assets/phone.png");
-    weird = loadImage("assets/trippy.jpg");
-    phoneBackground = loadImage("assets/phonebkg.jpg");
-    phoneCall = loadImage("assets/phoneCall.jpg");
-    tunnel = loadImage("assets/tunnel.jpg");
-    basement = loadImage("assets/basement.jpg");
-    echo360 = loadImage("assets/echo360.jpg");
-    woman = loadImage("assets/woman.jpg");
-    door = loadImage("assets/door.jpg");
-    lab = loadImage("assets/lab.jpg");
-    cityView = loadImage("assets/cityView.jpg");
-    shadow = loadImage("assets/shadow.png");
-    target = loadImage("assets/target.png");
-    boxer = loadImage("assets/boxer.jpg");
-    socialMedia = loadImage("assets/socialMedia.jpg");
-    happy = loadImage("assets/happy.jpg");
-    drawers = loadImage("assets/drawers.jpg");
-    remote = loadImage("assets/remote.png");
-
 }
 
 function draw() {
+    // your "draw loop" code goes here
 
-// sets the backgrounds for each scene appropriately
     if (scriptCount <= 3) {
       background(0,0,0);
     } else if (scene == 1 || scene == "1a" || scene == "1b") {
@@ -428,12 +412,21 @@ function draw() {
     background(socialMedia);
   }
 
-// draws textBox for script
+    fill(0,0,0);
+    text(moveToNext, 10, textSize1);
+    text(moveBackwards, 10, textSize1*2);
+    text(scriptCount, 10, textSize1*3);
+    text(a, 10, textSize1*4);
+    text(b, 10, textSize1*5);
+    text(scene, 10, textSize1*6);
+    text(mouseX, 10, textSize1*7);
+    text(mouseY, 10, textSize1*8);
+    text(readMessages, 10, textSize1*9);
+
     fill("#ffffff");
     strokeWeight(5);
     rect(20, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
 
-// controls the changing of scenes
     if (a && scene == 1) {
       scene = "1a";
       a = false;
@@ -496,23 +489,22 @@ function draw() {
     fill(0,0,0);
     textFont(poiret, textSize1);
 
-// controls changing of scripts
     if (scriptCount == scene1.length) {
-      // go to sleep option or look around
+      // go to sleep option
       text(option1[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
       text(option1[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scriptCount == scene1.length+scene1a.length+1 && scene == "1a") {
-      // go upstairs
+      // go upstairs and downstairs option
       image(stairs, 0, 0, windowWidth/2, windowHeight);
 
-      // controls movement of stairs
+
      if (mouseX < windowWidth/2 && mouseY < windowHeight-txtScreenH) {
        image(stairs, 0, 0, windowWidth/2+frameCount*10%windowWidth/2, windowHeight);
        if (frameCount*10 > windowWidth/2) {
-         // change to scene2 when stairs are the whole screen
          scene = 2;
        }
      }
+
 
       fill("#ffffff");
       strokeWeight(5);
@@ -522,8 +514,6 @@ function draw() {
     } else if (scene == 2 && scriptCount == 7+scene2a.length) {
       // look around option
       text(option3[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
-
-      // if the mouse hovers over the drawers or remote, change scene
       if (mouseX >= windowWidth/3 && mouseX <= windowWidth/3+windowWidth/15.34
       && mouseY >= windowHeight/2 && mouseY <= windowHeight/2+windowHeight/7.32) {
         scene = "labreport";
@@ -539,19 +529,20 @@ function draw() {
     image(remote, windowWidth/2, windowHeight/2, windowWidth/30.68, windowHeight/7.32);
   }
     } else if (scene == 1 && scriptCount <= 3) {
-      // scene 1 script
       text(scene1[scriptCount], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
     } else if (scene == "1a" && scriptCount-4 < scene1a.length) {
-      // scene 1a script
+      if (scriptCount == scene1.length+scene1a.length) {
+        textFont(poiret, textSize1*2.2);
+        text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+        textFont(poiret, textSize1);
+      } else {
       text(scene1a[scriptCount-4], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175,  windowHeight/7.32);
+       }
     } else if (scene == 2 && scriptCount-7 < scene2a.length) {
-      // controls stair 'battle scene'
       if (stairsStatus == "alive") {
         if (!shotgun.isPlaying()) {
           shotgun.play();
         }
-
-        // creates hp life bar
         if (hit < 10) {
           fill("#1DFF83");
           rect(windowWidth-windowWidth/6.136, windowWidth/76.6, windowWidth/7.67, windowWidth/76.6);
@@ -566,8 +557,13 @@ function draw() {
           text(scene2a[scriptCount - 7], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         }
       } else {
-        // switches to next scene if stairs are dead
         background(office);
+        text(moveToNext, 10, textSize1);
+        text(moveBackwards, 10, textSize1*2);
+        text(scriptCount, 10, textSize1*3);
+        text(a, 10, textSize1*4);
+        text(b, 10, textSize1*5);
+        text(scene, 10, textSize1*6);
         fill("#ffffff");
         strokeWeight(5);
         rect(windowWidth/76.7, windowHeight-txtScreenH, windowWidth-txtMargin*2, txtScreenH-txtMargin);
@@ -579,18 +575,13 @@ function draw() {
       readReport = true;
       text(labReport[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "labreport" && scriptCount < 24) {
-      // sets up news scene but taking into account you clicked the labreport first
       text(news[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "news" && scriptCount - 11 <= news.length) {
-      // sets up news scene
       text(news[scriptCount-11], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == "1b" && scriptCount-4 < deathScene1.length) {
-      // sets up deathScene1 - when you just fall asleep forever
       text(deathScene1[scriptCount-4], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     } else if (scene == 3 && scriptCount - 24 < scene3.length) {
-      // controls scene 3
       if (scriptCount == 28) {
-        // option to open window or check phone
         text(scene3[scriptCount-24], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -598,7 +589,6 @@ function draw() {
       text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     }
     } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
-      // scene 3.1 is like scene 3 but used to account for branching
       if (scriptCount - 17 == scene3.length-1) {
         text(scene3[scriptCount-17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -607,7 +597,7 @@ function draw() {
       text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     }
     } else if (scene == "phone") {
-      // sets up phone scene
+      // displays phone
       background("#ffd1e5");
       image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
       fill("#d2f5f7");
@@ -622,7 +612,7 @@ function draw() {
 
      readMessages = true;
 
-// controls whether to show voicemail or messages
+// controls whether to choose voicemail or messages
       if (mouseX >= windowWidth*3/8+windowWidth/38.35 && mouseX <= ((windowWidth*3/8+windowWidth/38.35)+windowWidth/4*0.8)
     && mouseY >= windowHeight*3/20+windowHeight/6.1 && mouseY <= (windowHeight*3/20+windowHeight/6.10)+windowHeight/10*0.8) {
       scene = "messages";
@@ -631,13 +621,12 @@ function draw() {
       scene = "voicemail";
     }
 } else if (scene == "voicemail" && scriptCount - 31 <= voicemail.length) {
-  // plays dialtone
+  // controls voicemail + sound
   if (dialCount == 0) {
     silence();
     dialling.play();
     dialCount++;
   }
-  // controls voicemail script
   if (scriptCount - 29 == voicemail.length) {
     text("Hmmm... I should", textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     if (readMessages) {
@@ -652,13 +641,14 @@ function draw() {
   }
 }
 else if (scene == "messages") {
-  // controls messages appearance & plays sound
+  // plays sound
   background("#ffd1e5");
   if (textPlay == 0) {
     silence();
     textAlert.play();
     textPlay++;
   }
+  // displays phone
   image(phone, windowWidth*3/8, windowHeight/20, windowWidth/4, windowHeight*9/10)
   fill("#d2f5f7");
     image(phoneBackground, windowWidth*3/8+windowWidth/51.13, windowHeight/20+windowHeight/7.32, windowWidth/4-windowWidth/30.68, windowHeight*9/10-windowHeight/3.66);
@@ -670,7 +660,7 @@ else if (scene == "messages") {
   notification(windowWidth/76.7*2, windowHeight/36.7, option5[0], 1);
   notification(windowWidth/76.7*2, windowHeight/36.7+textSize1*5, option5[1], 1);
 
-// allows you to go to voicemail or open window
+// controls display of messages/voicemail
 if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
 && mouseY >=  windowHeight/36.7 && mouseY <=  windowHeight/36.7+windowHeight/10*0.8) {
   scene = "voicemail";
@@ -691,7 +681,7 @@ if (mouseX >= windowWidth/76.7 && mouseX <= windowWidth/76.7+windowWidth/4*0.8
   text(escape[scriptCount - 38], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "shoot") {
-  // controls shooting scene
+  // controls shooting scene + sfx
   background(tunnel);
   image(shadow, windowWidth/3, windowHeight/3, windowWidth/3, windowHeight/3);
 
@@ -703,7 +693,7 @@ image(target, mouseX, mouseY, windowWidth/15.34, windowHeight/7.34);
        scene = "deathScene3";
      }
 } else if (scene == "deathScene3" && scriptCount - 51 < deathScene3.length) {
-  // deathscene3 - Honeybunny kills you
+  // honeybunny kills you
   text(deathScene3[scriptCount - 51], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 else if (scene == "wait" && scriptCount - 52 <= wait.length) {
@@ -717,7 +707,7 @@ else if (scene == "wait" && scriptCount - 52 <= wait.length) {
 } else if (scene == "take" && scriptCount - 63 < takeHer.length) {
   // controls take scene
 
-  // battle with door
+  // controls battle with door
 if (scriptCount - 63 == takeHer.length - 1) {
   if (doorStatus == "alive") {
     if (hit < 10) {
@@ -734,14 +724,14 @@ if (scriptCount - 63 == takeHer.length - 1) {
     }
   }
 } else {
-  // if not yet at battle, display like a normal scene
+  // if not at battle, display text like usual
   hit = 0;
   text(takeHer[scriptCount - 63], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "ending" && scriptCount-68 <= ending.length) {
-  // controls ending scene
+  // plays ending
   if (scriptCount - 68 == ending.length) {
-    // option 8 - bookface post or broadcast
+    // controls option8
     text(option8[0], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     text(option8[1], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
     text(option8[2], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
@@ -749,33 +739,32 @@ if (scriptCount - 63 == takeHer.length - 1) {
   text(ending[scriptCount - 68], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
 } else if (scene == "goodEnding" && scriptCount-74 < goodEnding.length) {
-  // plays good ending
+   // plays good ending
   text(goodEnding[scriptCount - 74], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 } else if (scene == "deathScene2" && scriptCount - 28 < deathScene2.length) {
-  // deathScene 2
+  // plays deathScene2
   text(deathScene2[scriptCount - 28], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 } else if (scene == "badEnding" && scriptCount-74 < badEnding.length) {
-  // bad Ending
+  // play badEnding
     text(badEnding[scriptCount - 74], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
 }
  else if (scene == "1b" && scriptCount-4 >= scene1a.length
  || scene == "deathScene2" && scriptCount - 28 >= deathScene2.length
 || scene == "deathScene3" && scriptCount - 51 >= deathScene3.length
 || scene == "badEnding" && scriptCount - 74 >= badEnding.length) {
-  // creates 'game over' screen for if you die
+   // creates 'game over' screen for if you die
       background(0,0,0);
       fill("#ffffff");
       text("Unfortunately, you have died.", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Be careful who you listen to - words can kill.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
       text("Press 'r' for a second chance.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1*2);
     } else {
-      // creates completion screen if you survive
+    // creates completion screen if you survive
       background("#ffffff");
       text("You have chosen who to trust wisely. Congraluations.", windowWidth/2-windowHeight/7.32, windowHeight/2);
       text("Press 'r' to play again.", windowWidth/2-windowHeight/7.32, windowHeight/2+textSize1);
     }
 }
-
 
 // controls navigation for game
 function keyPressed() {
