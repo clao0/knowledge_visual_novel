@@ -13,14 +13,6 @@ Office image by MagicDesk on Pixabay
 https://pixabay.com/en/office-sitting-room-executive-730681/
 CC0 Creative Commons (licence found in link above)
 
-Bedroom image by GregoryButler on pixabay
-https://pixabay.com/en/bedroom-architectural-interior-389254/
-CC0 Creative Commons (licence found in link above)
-
-Hallway image by PIRO4D on Pixabay
-https://pixabay.com/en/floor-gang-input-entrance-hall-2228277/
-CC0 Creative Commons (licence found in link above)
-
 Stairway image by palmettophoto1 on Pixabay
 https://pixabay.com/en/luxury-real-estate-stair-winding-1689964/
 CC0 Creative Commons (licence found in link above)
@@ -31,14 +23,6 @@ CC0 Creative Commons (licence found in link above)
 
 Report image by Andrys on Pixabay
 https://pixabay.com/en/letter-handwriting-family-letters-447577/
-CC0 Creative Commons (licence found in link above)
-
-Phone image by TeroVesalainen on Pixabay
-https://pixabay.com/en/smartphone-white-silver-gray-1957740/
-CCO Creative Commons (licence found in link above)
-
-Weird image by stuarthampton on Pixabay
-https://pixabay.com/en/painting-art-artist-hippie-hippy-2265351/
 CC0 Creative Commons (licence found in link above)
 
 Trippy image by allyartist on Pixabay
@@ -69,10 +53,6 @@ Echo360 image by WikimediaImages on Pixabay
 https://pixabay.com/en/accuracy-international-as50-872190/
 CC0 Creative Commons (licence found in link above)
 
-Actual phone image by alles on Pixabay
-https://pixabay.com/en/old-phone-phone-link-call-2436202/
-CC0 Creative Commons (licence found in link above)
-
 Target image by OpenClipart-Vectors on Pixabay
 https://pixabay.com/en/crosshairs-crosslines-cross-hairs-146113/
 CC0 Creative Commons (licence found in link above)
@@ -83,10 +63,6 @@ CC0 Creative Commons (licence found in link above)
 
 Door image by cocoparisienne on Pixabay
 https://pixabay.com/en/door-goal-portal-wooden-door-wood-2664419/
-CC0 Creative Commons (licence found in link above)
-
-Splinters image by sapphir1 on Pixabay
-https://pixabay.com/en/pine-wood-chips-logs-wood-2833606/
 CC0 Creative Commons (licence found in link above)
 
 Lab image by skeeze on Pixabay
@@ -118,12 +94,15 @@ Attribution 3.0
 
 Punch sfx by Mark DiAngelo
 http://soundbible.com/2069-Realistic-Punch.html
+Attribution 3.0
 
 Gunshot sfx by GoodSoundForYou
 http://soundbible.com/1998-Gun-Fire.html
+Attribution 3.0
 
 Phone dialing sfx by KevanGC on soundbible
 http://soundbible.com/1560-Phone-Dialing-With-Dialtone.html
+Attribution 3.0
 
 Background Music
 
