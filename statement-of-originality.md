@@ -10,6 +10,10 @@ such as the game 'Hatoful Boyfriend' which initially appeared to be a dating
 sim involving pigeons but turned out to be a murder mystery involving
 biological warfare and government conspiracies.
 
+I was also inspired by common sci-fi/apocalyptic tropes such as those found
+in popular culture (e.g. the Walking Dead etc) and classic sci-fi novels
+such as 1984.
+
 The quote from President Dick Tater was adapted from a similar quote
 by North Korean dictator, Kim Jong Un.
 https://www.brainyquote.com/quotes/quotes/k/kimjongun819361.html
