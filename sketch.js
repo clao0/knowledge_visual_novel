@@ -144,7 +144,7 @@ function setup() {
     textPlay = 0;
     scriptCount = 0;
 
-   frameRate(300);
+   frameRate(150);
 
     readMessages = false;
     readReport = false;
@@ -507,10 +507,10 @@ function draw() {
 
       // controls movement of stairs
      if (mouseX < windowWidth/2 && mouseY < windowHeight-txtScreenH) {
-       image(stairs, 0, 0, windowWidth/2+frameCount*10%windowWidth/2, windowHeight);
-       if (frameCount*10 > windowWidth/2) {
+       image(stairs, 0, 0, windowWidth/2+frameCount%windowWidth/2, windowHeight);
+       if (frameCount > windowWidth/2) {
          // change to scene2 when stairs are the whole screen
-         scene = 2;
+         scene = 2
        }
      }
 
