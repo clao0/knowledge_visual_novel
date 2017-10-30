@@ -281,7 +281,7 @@ deathScene1 = ["Now, a reasonable person would probably try to pinpoint their su
 "BUT, “reasonableness” is overrated and this blanket’s fluffiness level is absolutely heavenly.",
 "Also, it appears to be morning and only absolute freaks of nature willingly wake up before 3pm.",
 "In fact, I feel like I could almost fall asleep… forever.",
-"A wave of drowsiness hits, and you pull the blanket closer until it’s snug like a second skin. The tension drains out of your body, muscles relaxing as your breaths become deeper.",
+"A wave of drowsiness hits, and I pull the blanket closer until it’s snug like a second skin. The tension drains out of my body, muscles relaxing as my breaths become deeper.",
 "...In ",
 "Out...",
 "...In",
