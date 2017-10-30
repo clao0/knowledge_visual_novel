@@ -195,30 +195,30 @@ function setup() {
      "1) Hack into FML news and broadcast the info", "2) Make a Bookface post - it can't wait!"];
 
 // scripts for various media
-    labReport = ["There appears to be a document of some kind.", "Examinitis treatment: Stage 1 observations",
-  "Subjects seemed to have recovered from initial symptoms. Respiratory and heart rates have stabilised.",
-"Certain subjects have begun to exhibit strange symptoms such as foaming at the mouth, biting other subjects and sporadic violent tendencies. At 17:20 Subject 666 reportedly attempted to cannibalise other subjects.",
-"Treatment results highly variable. Proceeding to stage 2 testing too dangerous.",
+    labReport = ["There appears to be a document of some sort.", "'Examinitis treatment: Stage 1 observations'",
+  "'Subjects seemed to have recovered from initial symptoms. Respiratory and heart rates have stabilised.'",
+"'Certain subjects have begun to exhibit strange symptoms such as foaming at the mouth, biting other subjects and sporadic outbreaks of violence. At 17:20 Subject 666 reportedly attempted to cannibalise other subjects.'",
+"'Treatment results highly variable. Proceeding to stage 2 testing too dangerous.'",
 "Well, I guess I could be a researcher of some sort? Better look around for more clues. Wait... what's that sound?"];
-    news = ["Live from the capital, Cantberra, this is Mindy Leslie from FML news.",
-  "Last week, medical researchers from the AHNO Medical School, lead by Dr. I. M. Scrood, claimed to have discovered a cure for examinitis, a deadly disease characterised by severe anxiety followed by lung failure and cardiac arrest.",
-"Currently, Secret Operational Services are investigating the probability of “examinitis” being a form of biological warfare, inflicted by foreign states.",
-"Due to preliminary trials’ astonishing results, President Dick Tater has issued an executive order to move onto stage two testing.",
-"'When young people are powerful, the Party and People’s army are powerful. Soon there will be nothing for us to afraid of - not even examinitis.'",
-"At 5am today, floating “fluff” microbots were released into air, granting all civilians who inhale them, immunity.",
-"Civilians are advised to keep their windows open at all time, and take walks, maximising chances of exposure."];
+    news = ["'Live from the capital, Cantberra, this is Mindy Leslie from FML news.'",
+  "'Last week, medical researchers from the AHNO Medical School, lead by Dr. I. M. Scrood, claimed to have discovered a cure for examinitis, a deadly disease characterised by severe anxiety followed by lung failure and cardiac arrest.'",
+"Currently, Secret Operational Services are investigating the probability of “examinitis” being a form of biological warfare, inflicted by foreign states.'",
+"'Due to preliminary trials’ astonishing results, President Dick Tater has issued an executive order to move onto stage two testing.'",
+"''When young people are powerful, the Party and People’s army are powerful. Soon there will be nothing for us to afraid of - not even examinitis.''",
+"'At 5am today, floating “fluff” microbots were released into air, granting all civilians who inhale them, immunity.'",
+"'Civilians are advised to keep their windows open at all time, and take walks, maximising chances of exposure.'"];
     messages = ["Hey babe ;) So excited for our dinner tonight",
   "Cant believe its already been 5 years",
 "So proud of u even the Prez approves of ur work!!",
 "Just be sure to open ur windows ok dont want you coming down with examinitis haha"];
-   voicemail = ["Dr. Scrood, I hope you’re feeling alright.",
-"I’m not sure if you’ll remember this but you were assaulted by one of the test subjects. We managed to restrain her before any significant damage was done, but you must be feeling a bit under the weather.",
-"Nevertheless, now is no time to wait. President Tater has gone insane!",
-"The military forcibly seized the “fluff” microbots this morning and implemented stage 2 testing.",
-"You need to escape. Now.",
-"There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.",
-"We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 200 m radius.",
-"Bring a weapon. The Echo360 is at tunnel’s entrance."];
+   voicemail = ["'Dr. Scrood, I hope you’re feeling alright.'",
+"'I’m not sure if you’ll remember this but you were assaulted by one of the test subjects. We managed to restrain her before any significant damage was done, but you must be feeling a bit under the weather.'",
+"'Nevertheless, now is no time to wait. President Tater has gone insane!'",
+"'The military forcibly seized the “fluff” microbots this morning and implemented stage 2 testing.'",
+"'You need to escape. Now.'",
+"'There’s an underground tunnel from your basement leading to the laboratory. It’s the only place in Cantberra free of the fluff now.'",
+"'We’ve installed an app on your phone - Zone B - which takes information from social media site Chitter and sends alerts if there are any sightings of the infected within a 200 m radius.'",
+"'Bring a weapon. The Echo360 is at tunnel’s entrance.'"];
 
 // escape scene
    escape = ["As an expert, Dr. Sorek sounds far more trustworthy than “Honeybunny” or President Tater’s propaganda. I guess I better take my chances.",
@@ -254,7 +254,7 @@ takeHer = ["I should probably take her with me to the lab - we’ll be able to p
 // ending scene
 ending = ["At last, we entered the lab.",
 "Turns out they had barricaded the door after getting the Zone B alert, but evidently it had turned out to be a false alarm.",
-"After informing them of Honeybunny’s circumstances, we rushed her to the lab, to undergo extensive testing. Being apart for a grand total of 2 hours was excruciatingly painful, but I cried gushing waterfalls of tears for its entirety but I reminded myself it was for the good of mankind.",
+"After informing them of Honeybunny’s circumstances, we rushed her to the lab, to undergo extensive testing. Being apart for a grand total of 2 hours was excruciatingly painful, I cried gushing waterfalls of tears for its entirety but I reminded myself it was for the good of mankind.",
 "When the results came back, we were absolutely shocked. Turns out her frequent consumption of energy drink “Blue Buffalo” had saved her.",
 "While “blue buffalo” was in one’s system, it rendered them immune to the nefarious effects of fluff."];
 
@@ -274,7 +274,7 @@ badEnding = ["“GUYS SDASLDFJASDLF PRESIDENT DICK TATER IS LYING SAVE YOURSELVE
 "The comments kept coming, and coming, and coming… until one day, they just didn’t.",
 "It was then we realised that there was no one left to write them.",
 "We were the only survivors left in Canberra.",
-"We were completely alone."];
+"We were completely alone. Our hearts broke from grief."];
 
 // scripts for death scenes
 deathScene1 = ["Now, a reasonable person would probably try to pinpoint their surroundings or figure out exactly what’s going on.",
@@ -452,14 +452,14 @@ function draw() {
       b = false;
     } else if (scene == 3.1 && b) {
       scene = "phone";
-      scriptCount+=7;
+      scriptCount+=6;
       b = false;
     } else if (scene == 3 && a) {
       scene = "deathScene2";
       a = false;
     } else if (scene == 3.1 && a) {
       scene = "deathScene2"
-      scriptCount+=7;
+      scriptCount+=6;
       a = false;
     }
     else if (scene == "voicemail" && scriptCount > 37 && a) {
@@ -597,14 +597,14 @@ function draw() {
       } else {
       text(scene3[(scriptCount-24)], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     }
-    } else if (scene == 3.1 && scriptCount - 17 < scene3.length) {
+  } else if (scene == 3.1 && scriptCount - 18 < scene3.length) {
       // scene 3.1 is like scene 3 but used to account for branching
-      if (scriptCount - 17 == scene3.length-1) {
-        text(scene3[scriptCount-17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+      if (scriptCount - 18 == scene3.length-1) {
+        text(scene3[scriptCount-18], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[0], textLoc[0], textLoc[1]+textSize1, windowWidth-windowWidth/19.175, windowHeight/7.32);
         text(option4[1], textLoc[0], textLoc[1]+textSize1*2, windowWidth-windowWidth/19.175, windowHeight/7.32);
       } else {
-      text(scene3[scriptCount - 17], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
+      text(scene3[scriptCount - 18], textLoc[0], textLoc[1], windowWidth-windowWidth/19.175, windowHeight/7.32);
     }
     } else if (scene == "phone") {
       // sets up phone scene
@@ -800,7 +800,7 @@ function keyPressed() {
   } else {
     if (scriptCount+1 <= windowHeight/7.320 && scriptCount != 3 &&
     scriptCount != 28 && scriptCount != 37 && scriptCount != 51 &&
-  scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 21 && scriptCount != 67
+  scriptCount != 62 && scriptCount != 73 && scriptCount != 10 && scriptCount != 22 && scriptCount != 67
 && scriptCount != 7) {
     moveToNext = true;
     scriptCount++;
@@ -811,22 +811,41 @@ function keyPressed() {
 
 // controls scene changing and navigation
   if (keyCode == UP_ARROW) {
+    if (!readReport) {
     if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
-    scriptCount == 51 || scriptCount == 62 || scriptCount == 73 || scriptCount == 21) {
+    scriptCount == 51 || scriptCount == 62 || scriptCount == 73 || scriptCount == 22) {
       // can only change when at an option screen
    b = false;
    a = true;
    scriptCount++;
  }
- } else if (keyCode == DOWN_ARROW){
+ } else {
    if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
-   scriptCount == 51 || scriptCount == 62 || scriptCount == 73 || scriptCount == 21) {
+   scriptCount == 51 || scriptCount == 62 || scriptCount == 73) {
+     // can only change when at an option screen
+  b = false;
+  a = true;
+  scriptCount++;
+ }
+ }
+ } else if (keyCode == DOWN_ARROW){
+   if (!readReport) {
+   if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
+   scriptCount == 51 || scriptCount == 62 || scriptCount == 73 || scriptCount == 22) {
    a = false;
    b = true;
    scriptCount++;
  }
+ } else {
+   if (scriptCount == 3 || scriptCount == 28 || scriptCount == 37 ||
+   scriptCount == 51 || scriptCount == 62 || scriptCount == 73) {
+   a = false;
+   b = true;
+   scriptCount++; }
  }
 }
+}
+
 
 function keyTyped() {
 // resets the game
