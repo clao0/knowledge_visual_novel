@@ -202,7 +202,7 @@ function setup() {
 "Well, I guess I could be a researcher of some sort? Better look around for more clues. Wait... what's that sound?"];
     news = ["'Live from the capital, Cantberra, this is Mindy Leslie from FML news.'",
   "'Last week, medical researchers from the AHNO Medical School, lead by Dr. I. M. Scrood, claimed to have discovered a cure for examinitis, a deadly disease characterised by severe anxiety followed by lung failure and cardiac arrest.'",
-"Currently, Secret Operational Services are investigating the probability of “examinitis” being a form of biological warfare, inflicted by foreign states.'",
+"'Currently, Secret Operational Services are investigating the probability of “examinitis” being a form of biological warfare, inflicted by foreign states.'",
 "'Due to preliminary trials’ astonishing results, President Dick Tater has issued an executive order to move onto stage two testing.'",
 "''When young people are powerful, the Party and People’s army are powerful. Soon there will be nothing for us to afraid of - not even examinitis.''",
 "'At 5am today, floating “fluff” microbots were released into air, granting all civilians who inhale them, immunity.'",
